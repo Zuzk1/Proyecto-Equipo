@@ -13,4 +13,12 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="30dp"
         tools:layout_editor_absoluteY="37dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tu perra pendeja madre"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="435dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
