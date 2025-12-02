@@ -1,0 +1,12 @@
+/build
+*/build
+*.apk
+*.ap_
+local.properties
+.gradle/
+.idea/workspace.xml
+.idea/libraries
+.idea/modules.xml
+.DS_Store
+Thumbs.db
+captures/
