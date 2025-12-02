@@ -21,4 +21,12 @@
         android:text="tu perra pendeja madre"
         tools:layout_editor_absoluteX="132dp"
         tools:layout_editor_absoluteY="435dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="569dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
