@@ -30,11 +30,11 @@
         tools:layout_editor_absoluteX="181dp"
         tools:layout_editor_absoluteY="522dp" />
 
-    <Button
-        android:id="@+id/button2"
+    <CalendarView
+        android:id="@+id/calendarView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="588dp" />
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="343dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
