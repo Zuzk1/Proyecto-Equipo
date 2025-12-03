@@ -90,8 +90,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Propietario\Downloads\IMG_20251202_160923.jpg" />
-                                                <entry key="scalingPercent" value="150" />
+                                                <entry key="imagePath" value="C:\Users\Propietario\Downloads\352 sin título_20251202201234.jpg" />
+                                                <entry key="scalingPercent" value="84" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -123,8 +123,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="generateWebpIcons" value="false" />
                                       <entry key="outputName" value="icono" />
-                                      <entry key="previewDensity" value="hdpi" />
                                       <entry key="showGrid" value="true" />
                                     </map>
                                   </option>
@@ -293,7 +293,6 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="previewDensity" value="hdpi" />
                                       <entry key="showGrid" value="true" />
                                     </map>
                                   </option>
