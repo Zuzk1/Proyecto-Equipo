@@ -14,27 +14,4 @@
         tools:layout_editor_absoluteX="30dp"
         tools:layout_editor_absoluteY="37dp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tu perra pendeja madre"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="435dp" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="522dp" />
-
-    <CalendarView
-        android:id="@+id/calendarView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="343dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
