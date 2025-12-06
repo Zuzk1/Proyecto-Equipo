@@ -12,7 +12,7 @@
         android:id="@+id/LoadingTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="304dp"
         android:fontFamily="serif-monospace"
         android:gravity="center"
         android:text="@string/BarraProgreso"
