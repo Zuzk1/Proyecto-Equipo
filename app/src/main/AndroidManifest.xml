@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +13,9 @@
         android:roundIcon="@mipmap/icono_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoAula">
+        <activity
+            android:name=".AddReminderActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity2"
             android:exported="false" />
