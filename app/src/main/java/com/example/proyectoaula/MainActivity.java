@@ -1,6 +1,7 @@
 package com.example.proyectoaula;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,10 +11,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     private ProgressBar ProBar;
-    private TextView LoadTV;
+    private TextView LoadTV, ProgTxt;
     private Handler handler = new Handler(Looper.getMainLooper());
     private int dotCount = 0;
 
@@ -24,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
         ProBar = findViewById(R.id.BarraProgreso);
         LoadTV = findViewById(R.id.LoadingTextView);
+        ProgTxt = findViewById(R.id.ProgresoTxt);
 
         animateProgressBar();
         animateLoadingText();
     }
+
     //Metodo Animmar Barra
     private void animateProgressBar() {
         //Crear Animacion para la esa
@@ -36,9 +41,25 @@ public class MainActivity extends AppCompatActivity {
         animation.setDuration(3500);
         //Hace que no se vea agresiva la carga
         animation.setInterpolator(new DecelerateInterpolator());
-        //Inicia la Animacion
+
+        //Animar el Texto
+        animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int progress = (int) animation.getAnimatedValue();
+
+                // Actualiza la barra de progreso
+                ProBar.setProgress(progress);
+
+                // 3. Actualiza el TextView con el valor del progreso
+                // Usamos Locale.US para asegurar que el formato sea consistente
+                ProgTxt.setText(String.format(Locale.US, "%d%%", progress));
+            }
+        });
+
         animation.start();
     }
+
     //Metodo Animmar Texto de Carga
     private void animateLoadingText() {
         //Hace un ciclo repetitivo
@@ -60,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         //Repite la tarea por Tercera vez
         handler.post(textRunnable);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -5,16 +5,52 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
-    <CalendarView
-        android:id="@+id/calendarView2"
-        android:layout_width="359dp"
-        android:layout_height="335dp"
-        android:layout_marginTop="16dp"
+    <TextView
+        android:id="@+id/LoadingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:fontFamily="serif-monospace"
+        android:gravity="center"
+        android:text="@string/BarraProgreso"
+        android:textColor="#000000"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/BarraProgreso"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="245dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="240dp"
+        android:backgroundTint="#040404"
+        android:backgroundTintMode="screen"
+        android:hapticFeedbackEnabled="true"
+        android:progressBackgroundTint="#000000"
+        android:progressBackgroundTintMode="add"
+        android:progressTint="#F44336"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoadingTextView"
+        app:layout_constraintVertical_bias="0.388" />
 
+    <TextView
+        android:gravity="center"
+        android:id="@+id/ProgresoTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif-monospace"
+        android:hint="@string/ProgresoTxt"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/BarraProgreso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoadingTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
