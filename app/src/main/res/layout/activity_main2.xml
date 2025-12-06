@@ -22,16 +22,15 @@
         tools:layout_editor_absoluteY="1dp">
 
         <Button
-            android:id="@+id/btn2"
-            android:layout_width="174dp"
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button" />
 
         <Button
-            android:id="@+id/btn3"
-            android:layout_width="177dp"
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button" />
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
