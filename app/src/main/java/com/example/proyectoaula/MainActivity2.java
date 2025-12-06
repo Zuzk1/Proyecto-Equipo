@@ -19,7 +19,7 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2); // Esta línea es crucial
 
         // 1. Enlazar la vista del calendario
-        calendarView = findViewById(R.id.Cal_PA);
+        calendarView = findViewById(R.id.CalendarioPro);
 
         // 2. Configurar el listener para cuando el usuario selecciona una fecha
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {

@@ -8,7 +8,7 @@
     tools:context=".MainActivity2">
 
     <CalendarView
-        android:id="@+id/calendarView"
+        android:id="@+id/CalendarioPro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="30dp"
