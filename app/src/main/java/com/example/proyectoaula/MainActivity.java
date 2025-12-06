@@ -3,12 +3,17 @@ package com.example.proyectoaula;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.content.Context;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +30,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        //Comprobar la versión de Android y vibrar
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            v.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+
+            v.vibrate(100);
+        }
 
         ProBar = findViewById(R.id.BarraProgreso);
         LoadTV = findViewById(R.id.LoadingTextView);
