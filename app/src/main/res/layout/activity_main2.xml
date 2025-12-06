@@ -11,33 +11,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="56dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="@+id/calendarView"
         tools:context=".MainActivity"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="NotSibling">
+        tools:ignore="NotSibling"
+        tools:layout_editor_absoluteX="-159dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnRojo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onClick"
-                android:text="Rojo" />
-
-            <Button
-                android:id="@+id/btnVerde"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onClick"
-                android:text="Verde" />
 
         </LinearLayout>
 
@@ -47,4 +31,26 @@
             android:layout_height="442dp" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRojo"
+        android:layout_width="166dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:onClick="alHacerClick"
+        android:text="Rojo"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/btnVerde"
+        android:layout_width="182dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+
+        android:onClick="alHacerClick"
+        android:text="Verde"
+        tools:layout_editor_absoluteX="197dp"
+        tools:layout_editor_absoluteY="8dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
