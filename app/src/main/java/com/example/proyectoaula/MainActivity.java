@@ -31,17 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-        //Comprobar la versión de Android y vibrar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            v.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else {
-
-            v.vibrate(100);
-        }
-
         ProBar = findViewById(R.id.BarraProgreso);
         LoadTV = findViewById(R.id.LoadingTextView);
         ProgTxt = findViewById(R.id.ProgresoTxt);
@@ -77,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
                 // Cuando la barra llega a 100, se ejecuta este código
                 Intent NewWindow = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(NewWindow);
+
+                //Vibra el telefono cuando llega al 100%
+                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+                //Comprobar la versión de Android y vibrar
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+                    v.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+
+                    v.vibrate(100);
+                }
                 // Finaliza esta actividad
                 finish();
             }
