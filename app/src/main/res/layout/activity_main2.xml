@@ -7,4 +7,31 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
 
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="235dp" />
+
+    <LinearLayout
+        android:layout_width="406dp"
+        android:layout_height="99dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="177dp"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
