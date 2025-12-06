@@ -44,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
         animation.setInterpolator(new DecelerateInterpolator());
 
         //Animar el Texto
+        animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int progress = (int) animation.getAnimatedValue();
+                // Actualiza el TextView con el valor del progreso
+                ProgTxt.setText(String.format(Locale.US, "%d%%", progress));
+            }
+        });
+
+        // Listener para cmabiar de Actividad
         animation.addListener(new android.animation.AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(android.animation.Animator animation) {
