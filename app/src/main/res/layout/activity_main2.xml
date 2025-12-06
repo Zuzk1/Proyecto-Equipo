@@ -7,10 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
 
+
+
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="386dp"
         android:layout_height="442dp"
         tools:layout_editor_absoluteX="12dp"
         tools:layout_editor_absoluteY="30dp" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="28dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="2dp"></LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
