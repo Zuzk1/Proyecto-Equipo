@@ -6,4 +6,17 @@
     </style>
 
     <style name="Theme.ProyectoAula" parent="Base.Theme.ProyectoAula" />
-</resources>
+
+    <!-- TEMA PARA LA PANTALLA DE BIENVENIDA (SPLASH SCREEN) -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <!-- Color de fondo para la splash screen. Puedes crear un color en colors.xml o usar uno existente -->
+        <item name="windowSplashScreenBackground">#F4DADA</item>
+
+        <!-- El ícono que se animará. Android usará el ícono principal de tu app -->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/icono</item>
+
+        <!-- El tema que se aplicará después de que termine la splash screen -->
+        <item name="postSplashScreenTheme">@style/Theme.ProyectoAula</item>
+    </style>
+
+    </resources>

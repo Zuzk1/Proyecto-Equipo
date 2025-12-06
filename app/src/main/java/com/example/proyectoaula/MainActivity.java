@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import android.content.Context;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.splashscreen.SplashScreen;
 
 import java.util.Locale;
 
@@ -25,11 +28,36 @@ public class MainActivity extends AppCompatActivity {
     private TextView LoadTV, ProgTxt;
     private Handler handler = new Handler(Looper.getMainLooper());
     private int dotCount = 0;
+    private boolean isReady = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Instala la Splash Screen antes que nada
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+
+        // Llama a super.onCreate() una sola vez
         super.onCreate(savedInstanceState);
+
+        // Llama a setContentView() una sola vez
         setContentView(R.layout.activity_main);
+
+        // Mantiene la Splash Screen visible hasta que la app esté lista
+        final View content = findViewById(android.R.id.content);
+        content.getViewTreeObserver().addOnPreDrawListener(
+                new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        //iNICIA SI LA APP ESTA LISTA OKENFJRNRJIGJIGRJIBN
+                        if (isReady) {
+                            content.getViewTreeObserver().removeOnPreDrawListener(this);
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                });
+
 
         ProBar = findViewById(R.id.BarraProgreso);
         LoadTV = findViewById(R.id.LoadingTextView);
@@ -37,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
         animateProgressBar();
         animateLoadingText();
+
+        // Avisa que la app ya puede dibujarse
+        isReady = true;
     }
 
     //Metodo Animmar Barra
