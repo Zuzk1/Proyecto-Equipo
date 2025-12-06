@@ -15,7 +15,8 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="@+id/calendarView"
         tools:context=".MainActivity"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="NotSibling">
 
         <LinearLayout
             android:layout_width="match_parent"
