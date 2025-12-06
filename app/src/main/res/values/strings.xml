@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ProyectoAula</string>
+    <string name="BarraProgreso">Cargando</string>
 </resources>
