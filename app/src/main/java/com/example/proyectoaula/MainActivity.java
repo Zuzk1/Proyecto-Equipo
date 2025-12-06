@@ -2,6 +2,7 @@ package com.example.proyectoaula;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -43,17 +44,15 @@ public class MainActivity extends AppCompatActivity {
         animation.setInterpolator(new DecelerateInterpolator());
 
         //Animar el Texto
-        animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        animation.addListener(new android.animation.AnimatorListenerAdapter() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int progress = (int) animation.getAnimatedValue();
-
-                // Actualiza la barra de progreso
-                ProBar.setProgress(progress);
-
-                // 3. Actualiza el TextView con el valor del progreso
-                // Usamos Locale.US para asegurar que el formato sea consistente
-                ProgTxt.setText(String.format(Locale.US, "%d%%", progress));
+            public void onAnimationEnd(android.animation.Animator animation) {
+                super.onAnimationEnd(animation);
+                // Cuando la barra llega a 100, se ejecuta este código
+                Intent NewWindow = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(NewWindow);
+                // Finaliza esta actividad
+                finish();
             }
         });
 
