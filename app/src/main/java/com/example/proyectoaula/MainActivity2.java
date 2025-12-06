@@ -19,16 +19,4 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
     }
-
-    public void alHacerClick(View view) {
-        switch (view.getId()){
-            case R.id.btnRojo:
-                Toast.makeText(this, "Alarmas", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.btnVerde:
-                Toast.makeText(this, "Pendientes", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
 }

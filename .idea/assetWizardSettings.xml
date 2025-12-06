@@ -90,8 +90,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Propietario\Downloads\352 sin título_20251202201234.jpg" />
-                                                <entry key="scalingPercent" value="84" />
+                                                <entry key="imagePath" value="C:\Users\Propietario\Downloads\356 sin título_20251206010548.jpg" />
+                                                <entry key="scalingPercent" value="93" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -123,7 +123,6 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="generateWebpIcons" value="false" />
                                       <entry key="outputName" value="icono" />
                                       <entry key="showGrid" value="true" />
                                     </map>
