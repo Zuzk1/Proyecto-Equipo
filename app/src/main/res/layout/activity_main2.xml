@@ -7,12 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="150dp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
