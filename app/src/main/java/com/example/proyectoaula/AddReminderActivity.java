@@ -41,11 +41,11 @@ public class AddReminderActivity extends AppCompatActivity {
                 if (isChecked) {
                     //Lógica si las notificaciones están prendidas
                     binding.TimeReminder.setEnabled(true); // Habilita el selector de hora
-                    Toast.makeText(AddReminderActivity.this, "Las notificaciones están activadas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddReminderActivity.this, R.string.LasNotificacionsEstanDesactivadasReminder, Toast.LENGTH_SHORT).show();
                 } else {
                     //Lógica si estan apagadas
                     binding.TimeReminder.setEnabled(false); // Deshabilita el selector de hora
-                    Toast.makeText(AddReminderActivity.this, "Las notificaciones están desactivadas", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddReminderActivity.this, R.string.LasNotificacionesEstanDesactivadasReminder, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -92,7 +92,7 @@ public class AddReminderActivity extends AppCompatActivity {
                 boolean useNotification = binding.NotificationSwitch.isChecked();
 
                 if (title.isEmpty()) {
-                    binding.ActNameLayout.setError("El título no puede estar vacío");
+                    binding.ActNameLayout.setError(getString(R.string.TituloNoVacioReminder));
                     return; //Detiene la ejecuccion del codigo
                 } else {
                     binding.ActNameLayout.setError(null); //Limpiar errores y asi si hay
@@ -100,7 +100,7 @@ public class AddReminderActivity extends AppCompatActivity {
 
                 //Checa que se seleccionó una hora si las notificaciones están activadas
                 if (useNotification && (selectedHour == -1 || selectedMinute == -1)) {
-                    Toast.makeText(AddReminderActivity.this, "Por favor, selecciona una hora para la notificación", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddReminderActivity.this, R.string.PVSeleccionaUnaHoraReminder, Toast.LENGTH_LONG).show();
                     return; // Detiene la ejecución
                 }
 
@@ -125,7 +125,7 @@ public class AddReminderActivity extends AppCompatActivity {
                 setResult(RESULT_OK, resultIntent);
 
                 //Muestra el Toast de confirmación (esto es opcional, pero útil)
-                Toast.makeText(AddReminderActivity.this, "Tarea '" + title + "' guardada.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddReminderActivity.this, getString(R.string.TareaReminder) + title + getString(R.string.GuardadaReminder), Toast.LENGTH_SHORT).show();
 
                 //Finaliza la actividad.
                 finish();

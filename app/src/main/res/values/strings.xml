@@ -17,5 +17,13 @@
     <string name="NotificationSwitch">Activar Notificacion</string>
     <string name="ButtonSave">Guardar Actividad</string>
 
+    //AddReminderMain Strings
+    <string name="LasNotificacionsEstanDesactivadasReminder">Las notificaciones están activadas</string>
+    <string name="LasNotificacionesEstanDesactivadasReminder">Las notificaciones están desactivadas</string>
+    <string name="TareaReminder">Tarea \'</string>
+    <string name="GuardadaReminder">\' guardada.</string>
+    <string name="PVSeleccionaUnaHoraReminder">Por favor, selecciona una hora para la notificación</string>
+    <string name="TituloNoVacioReminder">El título no puede estar vacío</string>
+
 
 </resources>
