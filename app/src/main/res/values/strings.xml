@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">ProyectoAula</string>
+    //Main1 Carga
     <string name="BarraProgreso">Cargando</string>
     <string name="ProgresoTxt">Iniciando</string>
+    //Main2 Apartado del Menu de Opciones cuando seleccionas un dia en el calendario
+    <string name="ActividadesPendientesMain2">Añadir Actividades Pendientes</string>
+    <string name="CancelarMain2">Cancelar</string>
+    <string name="OpcionesParaElMain2">"Opciones para el: "</string>
 
 
 </resources>
