@@ -19,29 +19,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.example.proyectoaula.Task;
 
 public class MainActivity2 extends AppCompatActivity {
 
     private CalendarView calendarVW;
 
-    // Launcher para iniciar AddReminderActivity y esperar un resultado.
     private ActivityResultLauncher<Intent> addReminderLauncher;
 
-    // El HashMap ahora usa nuestra clase Task.
     private Map<String, List<Task>> tasksByDate = new HashMap<>();
 
-    // ¡NUEVO! Para recordar la última celda que pintamos.
     private TextView lastSelectedDayView = null;
     private int originalTextColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2); // Esta línea es crucial
+        setContentView(R.layout.activity_main2);
 
-        // Se configura el launcher.
+        // Configura el launcher
         setupActivityLauncher();
 
         calendarVW = findViewById(R.id.CalendarioPro);
@@ -54,43 +50,41 @@ public class MainActivity2 extends AppCompatActivity {
                 //Los meses se cuentan desde 0 , Entonces le que sumamos 1 para que sea asi bien.
                 String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
 
-                // ¡¡¡EL HACKEO FINAL!!!
-                // 1. Limpiamos la celda que pintamos antes (si es que hay una).
+                //Limpiamos la celda que pintamos antes
                 if (lastSelectedDayView != null) {
                     lastSelectedDayView.setBackgroundColor(Color.TRANSPARENT);
                     lastSelectedDayView.setTextColor(originalTextColor);
                 }
 
-                // 2. Buscamos la celda del día que acabamos de tocar.
+                //Buscamos la celda del día que acabamos de tocar.
                 TextView dayView = findDayView(dayOfMonth);
 
                 if (dayView != null) {
-                    // Guardamos el color de texto original antes de hacer cambios.
+                    //Se guarda el color del texto
                     if (lastSelectedDayView == null) {
                         originalTextColor = dayView.getCurrentTextColor();
                     }
 
-                    // 3. Checamos si el NUEVO día seleccionado tiene tareas.
+                    //Se checa si el dia tiene tareas
                     if (tasksByDate.containsKey(selectedDate) && !tasksByDate.get(selectedDate).isEmpty()) {
-                        // ¡SÍ TIENE! Pintamos el fondo de AZUL y el texto de BLANCO.
+                        // Color Azul
                         dayView.setBackgroundColor(Color.BLUE);
                         dayView.setTextColor(Color.WHITE);
                     } else {
-                        // NO TIENE. Lo dejamos con su color normal.
+                        //Color Normal
                         dayView.setBackgroundColor(Color.TRANSPARENT);
                         dayView.setTextColor(originalTextColor);
                     }
-                    // Guardamos la referencia a esta celda para poder limpiarla después.
+                    //Guardamos la referencia a esta celda para poder limpiarla después.
                     lastSelectedDayView = dayView;
                 }
-
                 //Se llama al metodo para el menu de opciones
                 showOptionsDialog(selectedDate);
             }
         });
     }
 
-    // ¡NUEVO MÉTODO! Para encontrar la vista de la celda de un día.
+    //Encontrar la celda de cada dia
     private TextView findDayView(int dayOfMonth) {
         try {
             ViewGroup vg = (ViewGroup) calendarVW.getChildAt(0);
@@ -102,29 +96,29 @@ public class MainActivity2 extends AppCompatActivity {
                     if (dayView instanceof TextView) {
                         TextView dayTextView = (TextView) dayView;
                         if (dayTextView.getText().toString().equals(String.valueOf(dayOfMonth))) {
-                            // ¡Lo encontramos!
+
                             return dayTextView;
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            // El hackeo puede fallar en algunos dispositivos, pero la app no se romperá.
+            //Si esto falla la app no se va acerrar asi cmo las otras
             return null;
         }
         return null;
     }
 
 
-    // El método ahora extrae todos los datos de la tarea.
+    //Metodo Extrae los datos de la Tarea
     private void setupActivityLauncher() {
         addReminderLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    // Este código se ejecuta cuando 'AddReminderActivity' termina.
+                    //Este código se ejecuta cuando 'AddReminderActivity' termina.
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         Intent data = result.getData();
-                        // Desempaquetamos TODOS los datos
+                        //Se sacan los datos
                         String date = data.getStringExtra("EXTRA_SELECTED_DATE");
                         String title = data.getStringExtra("EXTRA_TASK_TITLE");
                         String note = data.getStringExtra("EXTRA_TASK_NOTE");
@@ -133,16 +127,15 @@ public class MainActivity2 extends AppCompatActivity {
                         boolean useNotification = data.getBooleanExtra("EXTRA_USE_NOTIFICATION", false);
 
                         if (date != null && title != null) {
-                            // Creamos un nuevo objeto 'Task'
+
                             Task newTask = new Task(title, note, hour, minute, useNotification);
 
-                            // Guardamos el objeto 'Task' completo en nuestro mapa
                             if (!tasksByDate.containsKey(date)) {
                                 tasksByDate.put(date, new ArrayList<>());
                             }
                             tasksByDate.get(date).add(newTask);
 
-                            // Mostramos una confirmación
+                            //Se Muestra una Confirmacion
                             Toast.makeText(this, "Tarea '" + title + "' guardada para el " + date, Toast.LENGTH_LONG).show();
                         }
                     }
@@ -152,7 +145,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     //Nos muestra un cmo cuadrito de Dialogo para la fecha que elijas
     private void showOptionsDialog(final String date) {
-        // ... (Este método se queda igual, no necesita cambios)
+
         final CharSequence[] options;
         if (tasksByDate.containsKey(date) && !tasksByDate.get(date).isEmpty()) {
             options = new CharSequence[]{"Ver Tareas", "Añadir Nueva Tarea", getString(R.string.CancelarMain2)};
@@ -183,9 +176,8 @@ public class MainActivity2 extends AppCompatActivity {
         builder.show();
     }
 
-    // Este método ahora muestra la lista de tareas con sus títulos y notas.
+    //Metodo que muestra las Tareas para una fecha
     private void showTasksForDate(String date) {
-        // ... (Este método se queda igual, no necesita cambios)
         List<Task> tasks = tasksByDate.get(date);
         if (tasks == null || tasks.isEmpty()) {
             Toast.makeText(this, "No hay tareas para esta fecha.", Toast.LENGTH_SHORT).show();

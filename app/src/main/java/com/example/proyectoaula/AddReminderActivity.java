@@ -83,7 +83,6 @@ public class AddReminderActivity extends AppCompatActivity {
     }
 
     //Configura el OnClickListener para el botón de guardar.
-    // --- CÓDIGO ACTUALIZADO ---
     private void setupSaveButton() {
         binding.ButtonSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +91,6 @@ public class AddReminderActivity extends AppCompatActivity {
                 String note = binding.ActNoteEdit.getText().toString().trim();
                 boolean useNotification = binding.NotificationSwitch.isChecked();
 
-                // --- Validaciones (esto se queda igual) ---
                 if (title.isEmpty()) {
                     binding.ActNameLayout.setError("El título no puede estar vacío");
                     return; //Detiene la ejecuccion del codigo
@@ -106,31 +104,30 @@ public class AddReminderActivity extends AppCompatActivity {
                     return; // Detiene la ejecución
                 }
 
-                // --- Lógica para devolver los datos ---
-                // 1. Crea un nuevo Intent para el resultado.
+                //Intent para el resultado
                 Intent resultIntent = new Intent();
 
-                // 2. Empaqueta los datos que quieres devolver.
+                //Guarda los datos antes de regresar
                 resultIntent.putExtra("EXTRA_TASK_TITLE", title);
                 resultIntent.putExtra("EXTRA_TASK_NOTE", note);
                 resultIntent.putExtra("EXTRA_TASK_HOUR", selectedHour);
                 resultIntent.putExtra("EXTRA_TASK_MINUTE", selectedMinute);
                 resultIntent.putExtra("EXTRA_USE_NOTIFICATION", useNotification);
 
-                // También debes devolver la fecha para la que se creó la tarea.
-                // Asumo que la actividad del calendario te pasó la fecha al iniciar.
-                // Si la recibiste en el `onCreate`, la devuelves aquí.
-                String dateFromCalendar = getIntent().getStringExtra("SELECTED_DATE"); // Ojo: Usar "SELECTED_DATE" que es la clave que usaste en MainActivity2
+                //También debes devolver la fecha para la que se creó la tarea.
+                //Asume que la actividad del calendario te pasó la fecha al iniciar.
+                //Si la recibiste en el `onCreate`, la devuelves aquí.
+                String dateFromCalendar = getIntent().getStringExtra("SELECTED_DATE");
                 resultIntent.putExtra("EXTRA_SELECTED_DATE", dateFromCalendar);
 
 
-                // 3. Establece el resultado como OK y adjunta el Intent con los datos.
+                //Establece el resultado como OK y adjunta el Intent con los datos.
                 setResult(RESULT_OK, resultIntent);
 
-                // 4. Muestra el Toast de confirmación (esto es opcional, pero útil)
+                //Muestra el Toast de confirmación (esto es opcional, pero útil)
                 Toast.makeText(AddReminderActivity.this, "Tarea '" + title + "' guardada.", Toast.LENGTH_SHORT).show();
 
-                // 5. Finaliza la actividad.
+                //Finaliza la actividad.
                 finish();
             }
         });
