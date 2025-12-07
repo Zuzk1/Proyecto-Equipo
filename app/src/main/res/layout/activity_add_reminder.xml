@@ -7,4 +7,73 @@
     android:layout_height="match_parent"
     tools:context=".AddReminderActivity">
 
+    <TextView
+        android:id="@+id/TittleNewAct"
+        android:layout_width="382dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/biz_udpmincho"
+        android:gravity="center"
+        android:text="Actividad Nueva"
+        android:textSize="38sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ActNameEdit"
+        android:layout_width="285dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:hint="Nombre de la Actividad"
+        android:inputType="textMultiLine"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TittleNewAct" />
+
+    <EditText
+        android:id="@+id/ActNoteEdit"
+        android:layout_width="263dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:hint="Agregar Nota (Opcional)"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ActNameEdit" />
+
+    <Button
+        android:id="@+id/ButtonSave"
+        android:layout_width="216dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="Guardar Actividad"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NotificationSwitch"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <Switch
+        android:id="@+id/NotificationSwitch"
+        android:layout_width="231dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="Activar Notificacion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ActNoteEdit" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
