@@ -18,5 +18,12 @@
         <!-- El tema que se aplicará después de que termine la splash screen -->
         <item name="postSplashScreenTheme">@style/Theme.ProyectoAula</item>
     </style>
+    <!-- Estilo personalizado para los botones -->
+    <style name="BotonMarron" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">@color/primary_color</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">14dp</item>
+    </style>
 
     </resources>

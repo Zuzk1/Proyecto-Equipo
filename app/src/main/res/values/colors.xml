@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_color">#FFFEFBF3</color> <!-- Un blanco hueso para el fondo -->
+    <color name="primary_color">#FF795548</color>  <!-- Un marrón para los botones y acentos -->
+    <color name="text_color">#FF4E342E</color>     <!-- Un marrón oscuro para el texto -->
+    <color name="hint_color">#FF8D6E63</color>
 </resources>
