@@ -3,6 +3,7 @@ package com.example.proyectoaula;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.CalendarView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity2 extends AppCompatActivity {
 
     private CalendarView calendarVW;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,5 +61,8 @@ public class MainActivity2 extends AppCompatActivity {
         });
         // Mostrar el cuadro de diálogo
         builder.show();
+
+
     }
+
 }
