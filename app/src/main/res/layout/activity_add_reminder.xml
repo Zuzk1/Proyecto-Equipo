@@ -73,7 +73,7 @@
             android:gravity="top|start"
             android:inputType="textMultiLine"
             android:lines="3"
-            android:textColor="@color/text_color"/>
+            android:textColor="@color/text_color" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,6 +110,7 @@
         android:fontFamily="serif"
         android:text="@string/NotificationSwitch"
         android:textColor="@color/text_color"
+        android:textColorLink="@color/text_color"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

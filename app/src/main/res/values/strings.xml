@@ -24,6 +24,8 @@
     <string name="GuardadaReminder">\' guardada.</string>
     <string name="PVSeleccionaUnaHoraReminder">Por favor, selecciona una hora para la notificación</string>
     <string name="TituloNoVacioReminder">El título no puede estar vacío</string>
+    <string name="SubtittleAct">Actividades Pendientes:</string>
+    <string name="ActPendientesGeneral">Sin Actididades Pendientes</string>
 
 
 </resources>

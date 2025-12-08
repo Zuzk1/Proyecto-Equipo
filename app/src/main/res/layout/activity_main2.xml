@@ -5,9 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".MainActivity2">
 
-    <!-- TU CALENDARIO, PERO AHORA ANCLADO CORRECTAMENTE -->
     <CalendarView
         android:id="@+id/CalendarioPro"
         android:layout_width="0dp"
@@ -15,30 +15,62 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/background_color"
+        android:backgroundTint="@color/background_color"
+        android:backgroundTintMode="src_in"
+        android:hapticFeedbackEnabled="true"
+        android:selectedWeekBackgroundColor="#070000"
+        android:unfocusedMonthDateColor="@color/hint_color"
+        android:weekNumberColor="@color/primary_color"
+        android:weekSeparatorLineColor="@color/text_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CalendarTittle" />
+
+    <TextView
+        android:id="@+id/SubtittleAct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/biz_udpmincho"
+        android:text="@string/SubtittleAct"
+        android:textColor="@color/text_color"
+        android:textColorHighlight="@color/text_color"
+        android:textColorHint="@color/text_color"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CalendarioPro" />
+
+    <TextView
+        android:id="@+id/CalendarTittle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/biz_udpmincho"
+        android:text="Calendario"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TU LAYOUT CON BOTONES, AHORA ANCLADO DEBAJO DEL CALENDARIO -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/ActPendientesGeneral"
+        android:layout_width="375dp"
+        android:layout_height="142dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/CalendarioPro"
-        app:layout_constraintStart_toStartOf="@+id/CalendarioPro"
-        app:layout_constraintEnd_toEndOf="@+id/CalendarioPro">
+        android:fontFamily="@font/biz_udpmincho"
+        android:hint="@string/ActPendientesGeneral"
+        android:inputType="textMultiLine"
+        android:textColor="@color/hint_color"
+        android:textColorHighlight="@color/hint_color"
+        android:textColorHint="@color/hint_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SubtittleAct"
+        tools:ignore="TextViewEdits" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
