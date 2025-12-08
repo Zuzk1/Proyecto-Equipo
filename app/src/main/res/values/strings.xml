@@ -9,6 +9,8 @@
     <string name="ActividadesPendientesMain2">Añadir Actividades Pendientes</string>
     <string name="CancelarMain2">Cancelar</string>
     <string name="OpcionesParaElMain2">"Opciones para el: "</string>
+    <string name="SubtittleAct">Actividades Pendientes: </string>
+    <string name="ActPendientesGeneral">Sin Actividades Pendientes</string>
 
     //AddReminderActivity
     <string name="TittleNewAct">Actividad Nueva</string>
@@ -24,8 +26,7 @@
     <string name="GuardadaReminder">\' guardada.</string>
     <string name="PVSeleccionaUnaHoraReminder">Por favor, selecciona una hora para la notificación</string>
     <string name="TituloNoVacioReminder">El título no puede estar vacío</string>
-    <string name="SubtittleAct">Actividades Pendientes:</string>
-    <string name="ActPendientesGeneral">Sin Actididades Pendientes</string>
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 </resources>
