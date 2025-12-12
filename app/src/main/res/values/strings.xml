@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProyectoAula</string>
+    <string name="app_name">Bitácora Erro</string>
 
     //Main1 Carga
     <string name="BarraProgreso">Cargando</string>
