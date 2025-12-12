@@ -34,5 +34,18 @@
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <!-- Este estilo hace que el título de la Toolbar sea blanco -->
     </style>
+    <!-- === ESTILOS PARA EL NUEVO CALENDARIO === -->
+    <style name="CalendarDateText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="CalendarHeaderText" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CalendarWeekDayText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/hint_color</item>
+    </style>
 
 </resources>

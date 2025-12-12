@@ -1,14 +1,21 @@
 package com.example.proyectoaula;
 
+// Imports que ya tenías
 import android.app.TimePickerDialog;
-import android.content.Intent; // NUEVO: Import necesario para devolver datos
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.proyectoaula.databinding.ActivityAddReminderBinding;
+
+// NUEVOS IMPORTS para el selector de fecha y las notificaciones
+import android.app.AlarmManager;
+import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.widget.DatePicker;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -22,6 +29,12 @@ public class AddReminderActivity extends AppCompatActivity {
     private int selectedHour = -1;
     private int selectedMinute = -1;
 
+    //NUEVA VARIABLE para almacenar la fecha seleccionada
+    private String selectedDate;
+
+    //NUEVAS VARIABLES para guardar la fecha para la alarma
+    private int year, month, day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +42,9 @@ public class AddReminderActivity extends AppCompatActivity {
         // Inflar el layout usando ViewBinding
         binding = ActivityAddReminderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //Configuracion de Selector de Fecha (NUEVA LLAMADA)
+        setupDatePicker();
         //Configuracion de Selector de Hora
         setupTimePicker();
         //Configuracion del Boton Guardar
@@ -41,7 +57,7 @@ public class AddReminderActivity extends AppCompatActivity {
                 if (isChecked) {
                     //Lógica si las notificaciones están prendidas
                     binding.TimeReminder.setEnabled(true); // Habilita el selector de hora
-                    Toast.makeText(AddReminderActivity.this, R.string.LasNotificacionsEstanDesactivadasReminder, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddReminderActivity.this, R.string.LasNotificacionsEstanActivadasReminder, Toast.LENGTH_SHORT).show();
                 } else {
                     //Lógica si estan apagadas
                     binding.TimeReminder.setEnabled(false); // Deshabilita el selector de hora
@@ -50,7 +66,63 @@ public class AddReminderActivity extends AppCompatActivity {
             }
         });
     }
-    //Configuracion del Selector de Hora
+
+    //MÉTODO MODIFICADO: Configuracion del Selector de Fecha
+    private void setupDatePicker() {
+        // Intenta obtener la fecha pasada desde la actividad anterior
+        selectedDate = getIntent().getStringExtra("SELECTED_DATE");
+
+        // Si no se pasó ninguna fecha, usa la fecha actual como valor por defecto
+        if (selectedDate == null || selectedDate.isEmpty()) {
+            final Calendar c = Calendar.getInstance();
+            year = c.get(Calendar.YEAR);
+            month = c.get(Calendar.MONTH);
+            day = c.get(Calendar.DAY_OF_MONTH);
+            // Formatea la fecha y la guarda
+            selectedDate = day + "/" + (month + 1) + "/" + year;
+        } else {
+            // Si la fecha viene de otra actividad, necesitamos parsearla para obtener los valores numéricos
+            // Esto es una simplificación. Si el formato cambia, esto podría fallar.
+            String[] parts = selectedDate.split("/");
+            if (parts.length == 3) {
+                day = Integer.parseInt(parts[0]);
+                month = Integer.parseInt(parts[1]) - 1; // El mes en Calendar va de 0 a 11
+                year = Integer.parseInt(parts[2]);
+            }
+        }
+
+        // Muestra la fecha (ya sea la pasada o la actual) en el TextView
+        binding.fechaSave.setText(selectedDate);
+
+        // Establece el OnClickListener para mostrar el diálogo de calendario al tocar
+        binding.fechaSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Usa las variables de clase para mostrar la fecha actual o la ya seleccionada
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AddReminderActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int selectedYear, int monthOfYear, int dayOfMonth) {
+                                // Este código se ejecuta cuando el usuario selecciona una fecha y pulsa "OK"
+                                // Se guardan los componentes numéricos
+                                year = selectedYear;
+                                month = monthOfYear;
+                                day = dayOfMonth;
+
+                                // Se guarda la fecha seleccionada en la variable (el mes se cuenta desde 0, por eso se suma 1)
+                                selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                                // Se actualiza el texto del TextView para mostrar la nueva fecha
+                                binding.fechaSave.setText(selectedDate);
+                            }
+                        }, year, month, day);
+
+                // Muestra el diálogo
+                datePickerDialog.show();
+            }
+        });
+    }
+
+    //Configuracion del Selector de Hora (sin cambios)
     private void setupTimePicker() {
         binding.TimeReminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,17 +133,14 @@ public class AddReminderActivity extends AppCompatActivity {
 
                 TimePickerDialog timePickerDialog = new TimePickerDialog(
                         AddReminderActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
-                                //Se guarda la hora y minuto seleccionados
-                                selectedHour = hourOfDay;
-                                selectedMinute = minute;
+                        (view, hourOfDay, minute) -> {
+                            //Se guarda la hora y minuto seleccionados
+                            selectedHour = hourOfDay;
+                            selectedMinute = minute;
 
-                                //Damos formato a la hora para mostrarla en el TextView
-                                String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
-                                binding.TimeReminder.setText(selectedTime);
-                            }
+                            //Damos formato a la hora para mostrarla en el TextView
+                            String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+                            binding.TimeReminder.setText(selectedTime);
                         },
                         currentHour,
                         currentMinute,
@@ -82,54 +151,82 @@ public class AddReminderActivity extends AppCompatActivity {
         });
     }
 
-    //Configura el OnClickListener para el botón de guardar.
+    //Configura el OnClickListener para el botón de guardar. (MODIFICADO)
     private void setupSaveButton() {
-        binding.ButtonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String title = binding.ActNameEdit.getText().toString().trim();
-                String note = binding.ActNoteEdit.getText().toString().trim();
-                boolean useNotification = binding.NotificationSwitch.isChecked();
+        binding.ButtonSave.setOnClickListener(v -> {
+            String title = binding.ActNameEdit.getText().toString().trim();
+            String note = binding.ActNoteEdit.getText().toString().trim();
+            boolean useNotification = binding.NotificationSwitch.isChecked();
 
-                if (title.isEmpty()) {
-                    binding.ActNameLayout.setError(getString(R.string.TituloNoVacioReminder));
-                    return; //Detiene la ejecuccion del codigo
-                } else {
-                    binding.ActNameLayout.setError(null); //Limpiar errores y asi si hay
-                }
-
-                //Checa que se seleccionó una hora si las notificaciones están activadas
-                if (useNotification && (selectedHour == -1 || selectedMinute == -1)) {
-                    Toast.makeText(AddReminderActivity.this, R.string.PVSeleccionaUnaHoraReminder, Toast.LENGTH_LONG).show();
-                    return; // Detiene la ejecución
-                }
-
-                //Intent para el resultado
-                Intent resultIntent = new Intent();
-
-                //Guarda los datos antes de regresar
-                resultIntent.putExtra("EXTRA_TASK_TITLE", title);
-                resultIntent.putExtra("EXTRA_TASK_NOTE", note);
-                resultIntent.putExtra("EXTRA_TASK_HOUR", selectedHour);
-                resultIntent.putExtra("EXTRA_TASK_MINUTE", selectedMinute);
-                resultIntent.putExtra("EXTRA_USE_NOTIFICATION", useNotification);
-
-                //También debes devolver la fecha para la que se creó la tarea.
-                //Asume que la actividad del calendario te pasó la fecha al iniciar.
-                //Si la recibiste en el `onCreate`, la devuelves aquí.
-                String dateFromCalendar = getIntent().getStringExtra("SELECTED_DATE");
-                resultIntent.putExtra("EXTRA_SELECTED_DATE", dateFromCalendar);
-
-
-                //Establece el resultado como OK y adjunta el Intent con los datos.
-                setResult(RESULT_OK, resultIntent);
-
-                //Muestra el Toast de confirmación (esto es opcional, pero útil)
-                Toast.makeText(AddReminderActivity.this, getString(R.string.TareaReminder) + title + getString(R.string.GuardadaReminder), Toast.LENGTH_SHORT).show();
-
-                //Finaliza la actividad.
-                finish();
+            //(Validaciones existentes sin cambios)
+            if (title.isEmpty()) {
+                binding.ActNameLayout.setError(getString(R.string.TituloNoVacioReminder));
+                return;
+            } else {
+                binding.ActNameLayout.setError(null);
             }
+
+            if (useNotification && (selectedHour == -1 || selectedMinute == -1)) {
+                Toast.makeText(AddReminderActivity.this, R.string.PVSeleccionaUnaHoraReminder, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            if (selectedDate == null || selectedDate.isEmpty()) {
+                Toast.makeText(AddReminderActivity.this, "Por favor, selecciona una fecha", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            //NUEVA LÓGICA: Si se deben usar notificaciones, se programan.
+            if (useNotification) {
+                scheduleNotification(title, note);
+            }
+
+            //(Código para devolver el resultado no cambia)
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("EXTRA_TASK_TITLE", title);
+            resultIntent.putExtra("EXTRA_TASK_NOTE", note);
+            resultIntent.putExtra("EXTRA_TASK_HOUR", selectedHour);
+            resultIntent.putExtra("EXTRA_TASK_MINUTE", selectedMinute);
+            resultIntent.putExtra("EXTRA_USE_NOTIFICATION", useNotification);
+            resultIntent.putExtra("EXTRA_SELECTED_DATE", selectedDate);
+
+            setResult(RESULT_OK, resultIntent);
+
+            Toast.makeText(AddReminderActivity.this, getString(R.string.TareaReminder) + title + getString(R.string.GuardadaReminder), Toast.LENGTH_SHORT).show();
+
+            finish();
         });
+    }
+
+    //NUEVO MÉTODO: Se encarga de programar la alarma para la notificación.
+    private void scheduleNotification(String title, String note) {
+        // 1. Crea un Intent que apunta al NotificationReceiver.
+        Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        intent.putExtra("EXTRA_TASK_TITLE", title);
+        intent.putExtra("EXTRA_TASK_NOTE", note);
+
+        // 2. Crea un PendingIntent que el sistema ejecutará en el futuro.
+        // Se usa un ID único para evitar que las alarmas se sobreescriban.
+        int pendingIntentId = (int) System.currentTimeMillis();
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                getApplicationContext(),
+                pendingIntentId,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
+        // 3. Obtiene el servicio de alarmas del sistema.
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        // 4. Configura la fecha y hora exactas para la alarma usando los valores numéricos.
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day, selectedHour, selectedMinute, 0);
+        long triggerTime = calendar.getTimeInMillis();
+
+        // 5. Programa la alarma para que se dispare exactamente a la hora y despierte el dispositivo.
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+
+        // Muestra un Toast de confirmación de la programación.
+        Toast.makeText(this, "Recordatorio programado para " + selectedDate + " a las " + String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute), Toast.LENGTH_LONG).show();
     }
 }

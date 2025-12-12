@@ -1,16 +1,16 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.android")    // BORRA LA LÍNEA id("kotlin-kapt") DE AQUÍ
 }
 
 android {
     namespace = "com.example.proyectoaula"
-    compileSdk = 34 // La versión estándar y recomendada por Google
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.proyectoaula"
-        minSdk = 26 // Mínimo para que funcionen las APIs de tiempo sin problemas
-        targetSdk = 34 // La versión estándar
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -33,9 +33,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    // ¡¡ESTA LÍNEA ES IMPORTANTE!!
-    // Le decimos a Gradle que no queremos fallar si hay conflictos de versión menores,
-    // sino que resuelva usando la versión más nueva que encuentre.
     packagingOptions {
         resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
     }
@@ -58,5 +55,6 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // BORRA TODAS LAS LÍNEAS DE ROOM QUE ESTABAN AQUÍ
 }
-    

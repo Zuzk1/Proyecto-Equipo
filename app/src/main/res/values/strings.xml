@@ -20,7 +20,7 @@
     <string name="ButtonSave">Guardar Actividad</string>
 
     //AddReminderMain Strings
-    <string name="LasNotificacionsEstanDesactivadasReminder">Las notificaciones están activadas</string>
+    <string name="LasNotificacionsEstanActivadasReminder">Las notificaciones están activadas</string>
     <string name="LasNotificacionesEstanDesactivadasReminder">Las notificaciones están desactivadas</string>
     <string name="TareaReminder">Tarea \'</string>
     <string name="GuardadaReminder">\' guardada.</string>
