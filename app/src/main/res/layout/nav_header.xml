@@ -9,12 +9,14 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <!-- Puedes poner una imagen, como el logo de tu app -->
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/icono_round" />
 
     <!-- Y texto, como el nombre de la app o del usuario -->
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/icono_head" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
