@@ -1,0 +1,25 @@
+ <menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- Puedes agrupar items para darles un comportamiento común -->
+<group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_opcion1"
+
+    android:title="Opción 1" />
+    <item
+        android:id="@+id/nav_opcion2"
+
+    android:title="Opción 2" />
+</group>
+
+<!-- También puedes tener items sueltos -->
+<item android:title="Otras Opciones">
+    <menu>
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Configuración" />
+        <item
+            android:id="@+id/nav_about"
+            android:title="Acerca de" />
+    </menu>
+</item>
+</menu>

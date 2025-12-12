@@ -26,6 +26,9 @@
     <string name="GuardadaReminder">\' guardada.</string>
     <string name="PVSeleccionaUnaHoraReminder">Por favor, selecciona una hora para la notificación</string>
     <string name="TituloNoVacioReminder">El título no puede estar vacío</string>
+        <!-- ... otros strings que ya tengas ... -->
+        <string name="navigation_drawer_open">Abrir menú de navegación</string>
+        <string name="navigation_drawer_close">Cerrar menú de navegación</string>
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

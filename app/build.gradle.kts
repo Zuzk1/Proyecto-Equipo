@@ -52,6 +52,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.activity:activity:1.8.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.fragment:fragment:1.8.9")
 
     // Dependencias de prueba
     testImplementation("junit:junit:4.13.2")

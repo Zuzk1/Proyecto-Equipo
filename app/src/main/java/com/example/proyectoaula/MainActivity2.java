@@ -1,11 +1,14 @@
+// Indica el paquete de tu aplicación
 package com.example.proyectoaula;
 
+// Imports que ya tenías
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;import android.widget.CalendarView;
+import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,27 +18,64 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+// Imports para la barra lateral
+import android.view.MenuItem;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
+
+// Imports de tus clases y utilidades
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.example.proyectoaula.Task;
 
-public class MainActivity2 extends AppCompatActivity {
+// PASO 1: Implementa la interfaz para que la clase pueda "escuchar" los clics del menú
+public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    // --- VARIABLES QUE YA TENÍAS ---
     private CalendarView calendarVW;
-
     private ActivityResultLauncher<Intent> addReminderLauncher;
-
     private Map<String, List<Task>> tasksByDate = new HashMap<>();
-
     private TextView lastSelectedDayView = null;
     private int originalTextColor;
+
+    // --- NUEVA VARIABLE PARA LA BARRA LATERAL ---
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        // --- INICIO DEL NUEVO CÓDIGO PARA LA BARRA LATERAL ---
+
+        // Busca la Toolbar en tu layout y la establece como la barra de acción principal
+        Toolbar toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
+
+        // Busca el DrawerLayout (el contenedor raíz)
+        drawerLayout = findViewById(R.id.drawer_layout);
+
+        // Busca el NavigationView (el menú) y le dice que esta clase manejará los clics
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        // Crea el "botón de hamburguesa" (toggle) que conecta la Toolbar con el DrawerLayout
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open,  // Texto para accesibilidad (abrir)
+                R.string.navigation_drawer_close // Texto para accesibilidad (cerrar)
+        );
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState(); // Sincroniza el ícono para que aparezca
+
+        // --- FIN DEL NUEVO CÓDIGO PARA LA BARRA LATERAL ---
+
+
+        // --- TU CÓDIGO ORIGINAL (sin cambios) ---
 
         // Configura el launcher
         setupActivityLauncher();
@@ -84,6 +124,45 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
 
+    // PASO 2: Gestiona el botón "Atrás" para cerrar primero el menú si está abierto
+    @Override
+    public void onBackPressed() {
+        // Comprueba si el menú lateral está abierto
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            // Si está abierto, lo cierra
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            // Si está cerrado, ejecuta la acción normal (salir de la actividad)
+            super.onBackPressed();
+        }
+    }
+
+    // PASO 3: Añade el método que se ejecuta cuando se hace clic en una opción del menú
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.nav_opcion1) {
+            // Lógica para cuando se presiona la "Opción 1"
+            Toast.makeText(this, "Has seleccionado la Opción 1", Toast.LENGTH_SHORT).show();
+
+        } else if (itemId == R.id.nav_opcion2) {
+            // Lógica para cuando se presiona la "Opción 2"
+            Toast.makeText(this, "Has seleccionado la Opción 2", Toast.LENGTH_SHORT).show();
+
+        } else if (itemId == R.id.nav_settings) {
+            // Lógica para la configuración
+            Toast.makeText(this, "Abriendo Configuración...", Toast.LENGTH_SHORT).show();
+        }
+
+        // Cierra el menú lateral después de seleccionar una opción
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+    // --- TUS MÉTODOS ORIGINALES (sin cambios) ---
+
     //Encontrar la celda de cada dia
     private TextView findDayView(int dayOfMonth) {
         try {
@@ -96,7 +175,6 @@ public class MainActivity2 extends AppCompatActivity {
                     if (dayView instanceof TextView) {
                         TextView dayTextView = (TextView) dayView;
                         if (dayTextView.getText().toString().equals(String.valueOf(dayOfMonth))) {
-
                             return dayTextView;
                         }
                     }
@@ -127,14 +205,11 @@ public class MainActivity2 extends AppCompatActivity {
                         boolean useNotification = data.getBooleanExtra("EXTRA_USE_NOTIFICATION", false);
 
                         if (date != null && title != null) {
-
                             Task newTask = new Task(title, note, hour, minute, useNotification);
-
                             if (!tasksByDate.containsKey(date)) {
                                 tasksByDate.put(date, new ArrayList<>());
                             }
                             tasksByDate.get(date).add(newTask);
-
                             //Se Muestra una Confirmacion
                             Toast.makeText(this, "Tarea '" + title + "' guardada para el " + date, Toast.LENGTH_LONG).show();
                         }
@@ -145,7 +220,6 @@ public class MainActivity2 extends AppCompatActivity {
 
     //Nos muestra un cmo cuadrito de Dialogo para la fecha que elijas
     private void showOptionsDialog(final String date) {
-
         final CharSequence[] options;
         if (tasksByDate.containsKey(date) && !tasksByDate.get(date).isEmpty()) {
             options = new CharSequence[]{"Ver Tareas", "Añadir Nueva Tarea", getString(R.string.CancelarMain2)};
@@ -160,12 +234,10 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 String selectedOption = options[item].toString();
-
                 if (selectedOption.equals(getString(R.string.ActividadesPendientesMain2)) || selectedOption.equals("Añadir Nueva Tarea")) {
                     Intent intent = new Intent(MainActivity2.this, AddReminderActivity.class);
                     intent.putExtra("SELECTED_DATE", date);
                     addReminderLauncher.launch(intent);
-
                 } else if (selectedOption.equals("Ver Tareas")) {
                     showTasksForDate(date);
                 } else if (selectedOption.equals(getString(R.string.CancelarMain2))) {
