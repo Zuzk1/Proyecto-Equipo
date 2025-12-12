@@ -32,6 +32,10 @@
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
     <string name="nav_opcion1">Añadir Tarea</string>
     <string name="Biitácora_Erro" > Bitácora Erro </string>
+    <string name="opcion2Temporal" > No sabemos que poner aqui </string>
+    <string name="OtrasOpcionesTemporal2">otrasOpcionesTempora2</string>
+    <string name="configuraci_n">Configuración</string>
+    <string name="acerca_de">Acerca de</string>
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

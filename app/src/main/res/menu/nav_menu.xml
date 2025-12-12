@@ -8,18 +8,18 @@
     <item
         android:id="@+id/nav_opcion2"
 
-    android:title="Opción 2" />
+    android:title="@string/opcion2Temporal" />
 </group>
 
 <!-- Aparte -->
-<item android:title="Otras Opciones">
+<item android:title="@string/OtrasOpcionesTemporal2">
     <menu>
         <item
             android:id="@+id/nav_settings"
-            android:title="Configuración" />
+            android:title="@string/configuraci_n" />
         <item
             android:id="@+id/nav_about"
-            android:title="Acerca de" />
+            android:title="@string/acerca_de" />
     </menu>
 </item>
 </menu>
