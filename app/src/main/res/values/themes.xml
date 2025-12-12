@@ -3,22 +3,26 @@
     <style name="Base.Theme.ProyectoAula" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Color de la Barra del Notch -->
+        <item name="android:statusBarColor">@color/hint_color</item>
+
     </style>
 
     <style name="Theme.ProyectoAula" parent="Base.Theme.ProyectoAula" />
 
-    <!-- TEMA PARA LA PANTALLA DE BIENVENIDA (SPLASH SCREEN) -->
+    <!-- SPLASH SCREEN -->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <!-- Color de fondo para la splash screen. Puedes crear un color en colors.xml o usar uno existente -->
+        <!-- Color de Fondo General -->
         <item name="windowSplashScreenBackground">@color/background_color</item>
 
-        <!-- El ícono que se animará. Android usará el ícono principal de tu app -->
+        <!-- Icono que se va a Animar -->
         <item name="windowSplashScreenAnimatedIcon">@mipmap/icono</item>
 
-        <!-- El tema que se aplicará después de que termine la splash screen -->
+        <!-- Tema Aplicado despues del Splash -->
         <item name="postSplashScreenTheme">@style/Theme.ProyectoAula</item>
     </style>
-    <!-- Estilo personalizado para los botones -->
+    <!-- Estilo General de la App -->
     <style name="BotonMarron" parent="Widget.Material3.Button">
         <item name="android:backgroundTint">@color/primary_color</item>
         <item name="android:textColor">@color/white</item>
@@ -26,4 +30,9 @@
         <item name="android:padding">14dp</item>
     </style>
 
-        </resources>
+    <!-- Estilo General de la Barra Toolbar -->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Este estilo hace que el título de la Toolbar sea blanco -->
+    </style>
+
+</resources>

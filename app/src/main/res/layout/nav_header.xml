@@ -18,11 +18,12 @@
         android:src="@drawable/icono_head" />
 
     <TextView
+        android:id="@+id/TittleLinear"
         android:layout_width="181dp"
         android:layout_height="48dp"
         android:fontFamily="@font/biz_udpmincho"
         android:paddingTop="8dp"
-        android:text="@string/Biitácora_Erro"
+        android:text="@string/TittleLinear"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp" />
 

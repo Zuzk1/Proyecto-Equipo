@@ -33,17 +33,16 @@ import java.util.List;
 import java.util.Map;
 import com.example.proyectoaula.Task;
 
-// PASO 1: Implementa la interfaz para que la clase pueda "escuchar" los clics del menú
+//Implementa la interfaz para que la clase pueda "escuchar" los clics del menú
 public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // --- VARIABLES QUE YA TENÍAS ---
     private CalendarView calendarVW;
     private ActivityResultLauncher<Intent> addReminderLauncher;
     private Map<String, List<Task>> tasksByDate = new HashMap<>();
     private TextView lastSelectedDayView = null;
     private int originalTextColor;
 
-    // --- NUEVA VARIABLE PARA LA BARRA LATERAL ---
+    //Variable para la barra esa
     private DrawerLayout drawerLayout;
 
     @Override
@@ -51,31 +50,26 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // --- INICIO DEL NUEVO CÓDIGO PARA LA BARRA LATERAL ---
+        //Codigo para la barra esa de la esquina
 
-        // Busca la Toolbar en tu layout y la establece como la barra de acción principal
+        //Busca la Toolbar en tu layout y la establece como la barra de acción principal
         Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-        // Busca el DrawerLayout (el contenedor raíz)
+        //Busca el DrawerLayout (el contenedor raíz)
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        // Busca el NavigationView (el menú) y le dice que esta clase manejará los clics
+        //Busca el NavigationView (el menú) y le dice que esta clase manejará los clics
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Crea el "botón de hamburguesa" (toggle) que conecta la Toolbar con el DrawerLayout
+        //Crea el "botón de de las 3 o 4 rayitas" que conecta la Toolbar con el DrawerLayout
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open,  // Texto para accesibilidad (abrir)
                 R.string.navigation_drawer_close // Texto para accesibilidad (cerrar)
         );
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState(); // Sincroniza el ícono para que aparezca
-
-        // --- FIN DEL NUEVO CÓDIGO PARA LA BARRA LATERAL ---
-
-
-        // --- TU CÓDIGO ORIGINAL (sin cambios) ---
 
         // Configura el launcher
         setupActivityLauncher();
@@ -159,9 +153,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-    // --- TUS MÉTODOS ORIGINALES (sin cambios) ---
 
     //Encontrar la celda de cada dia
     private TextView findDayView(int dayOfMonth) {
