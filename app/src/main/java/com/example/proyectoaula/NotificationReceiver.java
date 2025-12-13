@@ -1,7 +1,6 @@
 package com.example.proyectoaula;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
+import android.app.NotificationChannel;import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +41,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 // ----- LA LÍNEA CORREGIDA -----
                 // Se usa un icono simple y monocromático de la carpeta drawable, como lo requiere Android.
-                .setSmallIcon(R.drawable.icono_head) // Ícono pequeño que aparece en la barra de estado
+                .setSmallIcon(R.drawable.event_note_erro)//Ícono pequeño y seguro que aparece en la barra de estado
                 .setContentTitle(title) // El título de la notificación
                 .setContentText(note)   // El texto del cuerpo de la notificación
                 .setPriority(NotificationCompat.PRIORITY_HIGH) // Prioridad para que intente mostrarse sobre otras apps
