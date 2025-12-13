@@ -40,7 +40,9 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         // 7. Se construye la notificación paso a paso
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.mipmap.icono_foreground) // Ícono pequeño que aparece en la barra de estado
+                // ----- LA LÍNEA CORREGIDA -----
+                // Se usa un icono simple y monocromático de la carpeta drawable, como lo requiere Android.
+                .setSmallIcon(R.drawable.icono_head) // Ícono pequeño que aparece en la barra de estado
                 .setContentTitle(title) // El título de la notificación
                 .setContentText(note)   // El texto del cuerpo de la notificación
                 .setPriority(NotificationCompat.PRIORITY_HIGH) // Prioridad para que intente mostrarse sobre otras apps

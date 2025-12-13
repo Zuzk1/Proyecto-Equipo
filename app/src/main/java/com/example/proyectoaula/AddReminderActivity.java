@@ -10,12 +10,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.proyectoaula.databinding.ActivityAddReminderBinding;
 
-// NUEVOS IMPORTS para el selector de fecha y las notificaciones
+// NUEVOS IMPORTS para el selector de fecha, notificaciones y la solicitud de permisos
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.os.Build;
+import android.provider.Settings;
 import android.widget.DatePicker;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -35,13 +40,19 @@ public class AddReminderActivity extends AppCompatActivity {
     //NUEVAS VARIABLES para guardar la fecha para la alarma
     private int year, month, day;
 
+    //NUEVO: Un "launcher" para gestionar la pantalla de solicitud de permisos.
+    private ActivityResultLauncher<Intent> requestPermissionLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Inflar el layout usando ViewBinding
+        //"Inflar" el layout usando ViewBinding
         binding = ActivityAddReminderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //Se configura el launcher para la solicitud de permisos.
+        setupPermissionLauncher();
 
         //Configuracion de Selector de Fecha (NUEVA LLAMADA)
         setupDatePicker();
@@ -50,7 +61,7 @@ public class AddReminderActivity extends AppCompatActivity {
         //Configuracion del Boton Guardar
         setupSaveButton();
 
-        //Logica del Switch de notificaciones
+        //Logica del Switch de notificaciones (sin cambios)
         binding.NotificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -67,9 +78,40 @@ public class AddReminderActivity extends AppCompatActivity {
         });
     }
 
-    //MÉTODO MODIFICADO: Configuracion del Selector de Fecha
+    //Metodo para abrir los ajustes de la app
+    private void setupPermissionLauncher() {
+        requestPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    // Este código se ejecuta cuando el usuario vuelve de la pantalla de solicitud de permisos.
+                });
+    }
+    //Comprueba que la App tenga los permisos
+    private boolean canScheduleExactAlarms() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Para Android 12 y superior, se usa el método oficial del AlarmManager.
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            return alarmManager.canScheduleExactAlarms();
+        }
+        // Para versiones anteriores a Android 12, el permiso no es necesario, así que se considera concedido.
+        return true;
+    }
+    //Dialogo para los ajustes de permisos
+    private void requestExactAlarmPermission() {
+        new AlertDialog.Builder(this)
+                .setTitle("Permiso Necesario")
+                .setMessage("Para programar recordatorios, Erro Task necesita permiso. Por favor, actívalo en la siguiente pantalla.")
+                .setPositiveButton("Ir a Ajustes", (dialog, which) -> {
+                    // Crea un Intent que abre directamente la pantalla de permisos de alarmas.
+                    Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                    requestPermissionLauncher.launch(intent);
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+    //Configuracion del selector de Fecha
     private void setupDatePicker() {
-        // Intenta obtener la fecha pasada desde la actividad anterior
+        //Intenta obtener la fecha pasada desde la actividad anterior
         selectedDate = getIntent().getStringExtra("SELECTED_DATE");
 
         // Si no se pasó ninguna fecha, usa la fecha actual como valor por defecto
@@ -78,11 +120,11 @@ public class AddReminderActivity extends AppCompatActivity {
             year = c.get(Calendar.YEAR);
             month = c.get(Calendar.MONTH);
             day = c.get(Calendar.DAY_OF_MONTH);
-            // Formatea la fecha y la guarda
+            //Formatea la fecha y la guarda
             selectedDate = day + "/" + (month + 1) + "/" + year;
         } else {
-            // Si la fecha viene de otra actividad, necesitamos parsearla para obtener los valores numéricos
-            // Esto es una simplificación. Si el formato cambia, esto podría fallar.
+            //Si la fecha viene de otra actividad, necesitamos parsearla para obtener los valores numéricos
+            //Esto es una simplificación. Si el formato cambia, esto podría fallar.
             String[] parts = selectedDate.split("/");
             if (parts.length == 3) {
                 day = Integer.parseInt(parts[0]);
@@ -91,14 +133,14 @@ public class AddReminderActivity extends AppCompatActivity {
             }
         }
 
-        // Muestra la fecha (ya sea la pasada o la actual) en el TextView
+        //Muestra la fecha (ya sea la pasada o la actual) en el TextView
         binding.fechaSave.setText(selectedDate);
 
-        // Establece el OnClickListener para mostrar el diálogo de calendario al tocar
+        //Establece el OnClickListener para mostrar el diálogo de calendario al tocar
         binding.fechaSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Usa las variables de clase para mostrar la fecha actual o la ya seleccionada
+                //Usa las variables de clase para mostrar la fecha actual o la ya seleccionada
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AddReminderActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -124,6 +166,7 @@ public class AddReminderActivity extends AppCompatActivity {
 
     //Configuracion del Selector de Hora (sin cambios)
     private void setupTimePicker() {
+        // ... tu código existente está perfecto aquí ...
         binding.TimeReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,7 +194,7 @@ public class AddReminderActivity extends AppCompatActivity {
         });
     }
 
-    //Configura el OnClickListener para el botón de guardar. (MODIFICADO)
+    //Configura el OnClickListener para el botón de guardar. (LÓGICA DE PERMISOS AÑADIDA)
     private void setupSaveButton() {
         binding.ButtonSave.setOnClickListener(v -> {
             String title = binding.ActNameEdit.getText().toString().trim();
@@ -176,10 +219,19 @@ public class AddReminderActivity extends AppCompatActivity {
                 return;
             }
 
-            //NUEVA LÓGICA: Si se deben usar notificaciones, se programan.
+            // --- NUEVA LÓGICA DE COMPROBACIÓN DE PERMISOS ---
             if (useNotification) {
-                scheduleNotification(title, note);
+                // Primero, comprueba si tiene el permiso.
+                if (canScheduleExactAlarms()) {
+                    // Si tiene permiso, procede a programar la notificación.
+                    scheduleNotification(title, note);
+                } else {
+                    // Si no tiene permiso, lo solicita y detiene el proceso de guardado.
+                    requestExactAlarmPermission();
+                    return; // IMPORTANTE: Detiene la ejecución para no llamar a finish()
+                }
             }
+            // --- FIN DE LA NUEVA LÓGICA ---
 
             //(Código para devolver el resultado no cambia)
             Intent resultIntent = new Intent();
@@ -194,12 +246,14 @@ public class AddReminderActivity extends AppCompatActivity {
 
             Toast.makeText(AddReminderActivity.this, getString(R.string.TareaReminder) + title + getString(R.string.GuardadaReminder), Toast.LENGTH_SHORT).show();
 
+            // Esta línea solo se ejecutará si no se necesita el permiso o si ya está concedido.
             finish();
         });
     }
 
-    //NUEVO MÉTODO: Se encarga de programar la alarma para la notificación.
+    //NUEVO MÉTODO: Se encarga de programar la alarma para la notificación (sin cambios en la lógica interna).
     private void scheduleNotification(String title, String note) {
+        // ... tu código existente está perfecto aquí ...
         // 1. Crea un Intent que apunta al NotificationReceiver.
         Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
         intent.putExtra("EXTRA_TASK_TITLE", title);
