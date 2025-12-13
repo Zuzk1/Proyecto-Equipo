@@ -15,10 +15,10 @@
         android:icon="@mipmap/icono"
         android:roundIcon="@mipmap/icono_round"
         tools:targetApi="31">
-
         <!-- ===== EL CAMBIO ESTÁ AQUÍ ===== -->
         <!-- Se añade android:exported="true" para permitir que el sistema -->
         <!-- despierte al receiver cuando la app está cerrada. -->
+        <activity android:name=".AddReminderViewActivity" />
         <receiver
             android:name=".NotificationReceiver"
             android:enabled="true"

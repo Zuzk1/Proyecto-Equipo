@@ -1,27 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
+    <!-- Tema base de la aplicación -->
     <style name="Base.Theme.ProyectoAula" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-
-        <!-- Color de la Barra del Notch -->
         <item name="android:statusBarColor">@color/hint_color</item>
-
     </style>
 
     <style name="Theme.ProyectoAula" parent="Base.Theme.ProyectoAula" />
 
     <!-- SPLASH SCREEN -->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <!-- Color de Fondo General -->
         <item name="windowSplashScreenBackground">@color/background_color</item>
-
-        <!-- Icono que se va a Animar -->
         <item name="windowSplashScreenAnimatedIcon">@mipmap/icono</item>
-
-        <!-- Tema Aplicado despues del Splash -->
         <item name="postSplashScreenTheme">@style/Theme.ProyectoAula</item>
     </style>
+
     <!-- Estilo General de la App -->
     <style name="BotonMarron" parent="Widget.Material3.Button">
         <item name="android:backgroundTint">@color/primary_color</item>
@@ -30,11 +22,11 @@
         <item name="android:padding">14dp</item>
     </style>
 
-    <!-- Estilo General de la Barra Toolbar -->
+    <!-- Estilo para la Toolbar -->
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <!-- Este estilo hace que el título de la Toolbar sea blanco -->
     </style>
-    <!-- === ESTILOS PARA EL NUEVO CALENDARIO === -->
+
+    <!-- Estilos para el Calendario -->
     <style name="CalendarDateText" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/text_color</item>
     </style>

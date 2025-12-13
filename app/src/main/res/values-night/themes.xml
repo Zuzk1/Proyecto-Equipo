@@ -1,7 +1,36 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
+    <!-- Tema base de la aplicación para MODO NOCHE -->
     <style name="Base.Theme.ProyectoAula" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:statusBarColor">@color/background_color_dark</item>
     </style>
+
+    <!-- El tema principal hereda del base -->
+    <style name="Theme.ProyectoAula" parent="Base.Theme.ProyectoAula" />
+
+    <!-- SPLASH SCREEN para MODO NOCHE -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background_color_dark</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/icono</item>
+        <item name="postSplashScreenTheme">@style/Theme.ProyectoAula</item>
+    </style>
+
+    <!-- Estilo para la Toolbar -->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    </style>
+
+    <!-- Estilos para el Calendario en MODO NOCHE -->
+    <style name="CalendarDateText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/text_color_dark</item>
+    </style>
+
+    <style name="CalendarHeaderText" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CalendarWeekDayText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/hint_color_dark</item>
+    </style>
+
 </resources>

@@ -1,7 +1,9 @@
 package com.example.proyectoaula;
 
+// Se importan las clases de Android que vamos a necesitar
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,8 +16,6 @@ import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.content.Context;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
@@ -24,125 +24,127 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Se declaran las variables para los elementos de la pantalla
     private ProgressBar ProBar;
     private TextView LoadTV, ProgTxt;
-    private Handler handler = new Handler(Looper.getMainLooper());
+    // Se declara un 'Handler' para manejar tareas repetitivas, como la animación del texto
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    // Se declara un contador para los puntos del texto "Cargando..."
     private int dotCount = 0;
+    // Se declara una bandera para saber cuándo la app está lista para dibujarse
     private boolean isReady = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Instala la Splash Screen antes que nada
-        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
-
-        // Llama a super.onCreate() una sola vez
+        // Se instala la pantalla de bienvenida (splash screen) antes que cualquier otra cosa
+        SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
-
-        // Llama a setContentView() una sola vez
+        // Se conecta esta clase con su archivo de diseño XML
         setContentView(R.layout.activity_main);
 
-        // Mantiene la Splash Screen visible hasta que la app esté lista
+        // Se usa esto para mantener la pantalla de bienvenida visible hasta que estemos listos
         final View content = findViewById(android.R.id.content);
         content.getViewTreeObserver().addOnPreDrawListener(
                 new ViewTreeObserver.OnPreDrawListener() {
                     @Override
                     public boolean onPreDraw() {
-                        //iNICIA SI LA APP ESTA LISTA OKENFJRNRJIGJIGRJIBN
+                        // Se pregunta si la bandera 'isReady' ya es verdadera
                         if (isReady) {
+                            // Si estamos listos, se quita el listener para no preguntar más y se dibuja la pantalla
                             content.getViewTreeObserver().removeOnPreDrawListener(this);
                             return true;
                         } else {
+                            // Si no estamos listos, se le dice al sistema que espere y no dibuje nada todavía
                             return false;
                         }
                     }
                 });
 
-
+        // Se buscan los elementos de la vista por su ID para poder usarlos
         ProBar = findViewById(R.id.BarraProgreso);
         LoadTV = findViewById(R.id.LoadingTextView);
         ProgTxt = findViewById(R.id.ProgresoTxt);
 
+        // Se inician las animaciones de la barra y del texto
         animateProgressBar();
         animateLoadingText();
 
-        // Avisa que la app ya puede dibujarse
+        // Se levanta la bandera para avisarle al sistema que ya puede quitar la pantalla de bienvenida y dibujar esta
         isReady = true;
     }
 
-    //Metodo Animmar Barra
+    // Aquí se configura la animación de la barra de progreso
     private void animateProgressBar() {
-        //Crear Animacion para la esa
+        // Se crea un animador que moverá el progreso de la barra de 0 a 100
         ObjectAnimator animation = ObjectAnimator.ofInt(ProBar, "progress", 0, 100);
-        //Duracion de la Carga
+        // Se le dice a la animación que dure 3.5 segundos en completarse
         animation.setDuration(3500);
-        //Hace que no se vea agresiva la carga
+        // Se usa un interpolador para que la animación empiece rápido y termine lento, se ve más suave
         animation.setInterpolator(new DecelerateInterpolator());
 
-        //Animar el Texto
-        animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int progress = (int) animation.getAnimatedValue();
-                // Actualiza el TextView con el valor del progreso
-                ProgTxt.setText(String.format(Locale.US, "%d%%", progress));
-            }
+        // Se pone un listener para que en cada pasito de la animación, se actualice el texto del porcentaje
+        animation.addUpdateListener(animationUpdated -> {
+            int progress = (int) animationUpdated.getAnimatedValue();
+            // Se actualiza el texto del porcentaje para que coincida con la barra
+            ProgTxt.setText(String.format(Locale.US, "%d%%", progress));
         });
 
-        // Listener para cmabiar de Actividad
+        // Se pone un listener para saber cuándo la animación ha terminado
         animation.addListener(new android.animation.AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(android.animation.Animator animation) {
                 super.onAnimationEnd(animation);
-                // Cuando la barra llega a 100, se ejecuta este código
-                Intent NewWindow = new Intent(MainActivity.this, MainActivity2.class);
-                startActivity(NewWindow);
+                // Cuando la barra llega al 100%, se prepara el brinco a la siguiente pantalla
+                Intent newWindow = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(newWindow);
 
-                //Vibra el telefono cuando llega al 100%
+                // Se hace que el celular vibre un poquito para avisar que ya cargó
                 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-                //Comprobar la versión de Android y vibrar
+                // Se revisa la versión de Android para usar el tipo de vibración correcta
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
                     v.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
                 } else {
-
+                    // Para versiones viejas de Android, se usa el método antiguo
                     v.vibrate(100);
                 }
-                // Finaliza esta actividad
+                // Se finaliza esta pantalla de carga para que el usuario no pueda volver a ella
                 finish();
             }
         });
-
+        // Se inicia la animación de la barra
         animation.start();
     }
 
-    //Metodo Animmar Texto de Carga
+    // Aquí se configura la animación del texto "Cargando..."
     private void animateLoadingText() {
-        //Hace un ciclo repetitivo
+        // Se crea una tarea que se puede repetir
         Runnable textRunnable = new Runnable() {
             @Override
             public void run() {
+                // Se obtiene el texto base "Cargando" desde los recursos
                 String baseText = getString(R.string.BarraProgreso);
+                // Se aumenta el contador de puntos y se reinicia si llega a 4
                 dotCount = (dotCount + 1) % 4;
 
+                // Se crea un constructor de texto para los puntos
                 StringBuilder dots = new StringBuilder();
                 for (int i = 0; i < dotCount; i++) {
                     dots.append(".");
                 }
+                // Se junta el texto base con los puntos y se muestra
                 LoadTV.setText(baseText + dots.toString());
-                //Hace que se Ejecute de Nuevo
+                // Se le dice al 'Handler' que vuelva a ejecutar esta misma tarea en medio segundo
                 handler.postDelayed(this, 500);
             }
         };
-        //Repite la tarea por Tercera vez
+        // Se le dice al 'Handler' que ejecute la tarea por primera vez
         handler.post(textRunnable);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //Detiene la Animacion del Texto
+        // Cuando esta pantalla se destruye, se limpian las tareas pendientes del 'Handler' para no gastar batería
         handler.removeCallbacksAndMessages(null);
     }
 }
