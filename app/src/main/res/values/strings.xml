@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Erro Task</string>
 
-    //Main1 Carga
+    //Main1Activity
     <string name="BarraProgreso">Cargando</string>
     <string name="ProgresoTxt">Iniciando</string>
 
-    //Main2 Apartado del Menu de Opciones cuando seleccionas un dia en el calendario
+    //Main2Activity Apartado del Menu de Opciones cuando seleccionas un dia en el calendario
     <string name="ActividadesPendientesMain2">Añadir Actividades Pendientes</string>
     <string name="CancelarMain2">Cancelar</string>
     <string name="OpcionesParaElMain2">"Opciones para el: "</string>
@@ -13,14 +13,15 @@
     <string name="ActPendientesGeneral">Sin Actividades Pendientes</string>
     <string name="gracias_por_permitir_las_notificaciones_Main2">Gracias por permitir las notificaciones.</string>
     <string name="no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2">No podremos mostrarte recordatorios si no permites las notificaciones.</string>
-    <string name="abriendo_ajustes_Main2">Abriendo Configuración...</string>
+    <string name="abriendo_ajustes_Main2">Abriendo Configuración…</string>
     <string name="tarea_guardada_con_exito_Main2">Tarea guardada con exito.</string>
     <string name="permiso_adicional_xiaomi_Main2">Permiso Adicional (Usuarios Xiaomi)</string>
     <string name="inicio_auto_Main2">Para asegurar que las notificaciones funcionen siempre, por favor, activa el \'Inicio Automático\' para esta app.</string>
     <string name="ir_a_ajustes_Main2">Ir a Ajustes</string>
     <string name="ahora_no_notis_Main2">Ahora no</string>
+    <string name="calendar_no_activities">No hay actividades para este día.</string>
 
-    //AddReminderActivity
+    //AddReminderMain and Activity Strings
     <string name="TittleNewAct">Actividad Nueva</string>
     <string name="ActNameEdit">Nombre de la Actividad</string>
     <string name="ActNoteEdit">Agregar Nota (Opcional)</string>
@@ -33,14 +34,8 @@
     <string name="cancelar_AddRemAct">Cancelar</string>
     <string name="recordatorio_AddRemAct">Recordatorio</string>
     <string name="recordatorio_programado_con_exito_AddRemAct">Actividad Guardada con exito :P</string>
-
-    //AddReminderMain Strings
-    <string name="LasNotificacionsEstanActivadasReminder">Las notificaciones están activadas</string>
-    <string name="LasNotificacionesEstanDesactivadasReminder">Las notificaciones están desactivadas</string>
-    <string name="TareaReminder">Tarea \'</string>
-    <string name="GuardadaReminder">\' guardada.</string>
-    <string name="PVSeleccionaUnaHoraReminder">Por favor, selecciona una hora para la notificación</string>
-    <string name="TituloNoVacioReminder">El título no puede estar vacío</string>
+    <string name="add_reminder_select_date">Seleccionar fecha</string>
+    <string name="add_reminder_select_time">Seleccionar hora</string>
 
     //Barra Lateral
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
@@ -52,14 +47,36 @@
     <string name="configuraci_n">Configuración</string>
     <string name="acerca_de">Acerca de</string>
 
-    //Notification Reciver
+    //NotificationReciver
     <string name="recordatorios_de_actividades_NotiReci">Recordatorios de Actividades</string>
     <string name="canal_actividades_pendientes_NotiReci">Canal para notificaciones de Actividades pendientes</string>
 
     //ItemReminder
     <string name="eliminar_recordatorio_ItemReminder">Eliminar recordatorio</string>
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //DayDetailsMain
+    <string name="day_details_title">Actividades Pendientes para el %1$d/%2$d</string>
+    <string name="day_details_no_activities">No hay actividades para este día.</string>
+    <string name="day_details_error_title">Error</string>
+    <string name="day_details_error_message">No se pudo cargar la fecha seleccionada.</string>
+
+    //AddReminderMain Strings
+    <string name="LasNotificacionsEstanActivadasReminder">Las notificaciones están activadas</string>
+    <string name="LasNotificacionesEstanDesactivadasReminder">Las notificaciones están desactivadas</string>
+    <string name="TareaReminder">Tarea \'</string>
+    <string name="GuardadaReminder">\' guardada.</string>
+    <string name="PVSeleccionaUnaHoraReminder">Por favor, selecciona una hora para la notificación</string>
+    <string name="TituloNoVacioReminder">El título no puede estar vacío</string>
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //AddReminderView Strings
+    <string name="view_reminders_title">Actividades</string>
+    <string name="view_reminders_empty_state">No tienes actividades pendientes</string>
+
+    //ActivityDayDetails Strings
+    <string name="day_details_preview_title">Actividades del 14/12</string>
+    <string name="day_details_preview_tasks">• Tarea 1\n• Tarea 2\n• Tarea 3</string>
 
 
 </resources>

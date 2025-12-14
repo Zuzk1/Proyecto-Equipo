@@ -85,7 +85,7 @@
         android:fontFamily="serif"
         android:gravity="left|center_vertical"
         android:padding="16dp"
-        android:text="Seleccionar fecha"
+        android:text="@string/add_reminder_select_date"
         android:textColor="@color/primary_color"
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/icon_date"
@@ -107,7 +107,7 @@
         android:fontFamily="serif"
         android:gravity="left|center_vertical"
         android:padding="16dp"
-        android:text="Seleccionar hora"
+        android:text="@string/add_reminder_select_time"
         android:textColor="@color/primary_color"
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/ic_time"
@@ -148,3 +148,4 @@
         app:layout_constraintTop_toBottomOf="@+id/NotificationSwitch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

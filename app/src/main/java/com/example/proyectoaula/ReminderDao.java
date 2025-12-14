@@ -4,21 +4,29 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-
 import java.util.List;
 
-@Dao // Está bien
+@Dao
 public interface ReminderDao {
 
-    // Está bien
     @Query("SELECT * FROM reminders ORDER BY timestamp ASC")
     List<Reminder> getAll();
 
-    // Está bien
     @Insert
     void insert(Reminder reminder);
 
-    // Está bien
     @Delete
     void delete(Reminder reminder);
+
+    // =================================================================
+    // === ESTE MÉTODO ES ESENCIAL, ASEGÚRATE DE QUE ESTÉ AQUÍ ===
+    // =================================================================
+    /**
+     * Obtiene todos los recordatorios que están dentro de un rango de tiempo (un día completo).
+     * @param from El timestamp de inicio del día.
+     * @param to   El timestamp de fin del día.
+     * @return Una lista de recordatorios para ese día.
+     */
+    @Query("SELECT * FROM reminders WHERE timestamp >= :from AND timestamp < :to")
+    List<Reminder> getRemindersBetween(long from, long to);
 }

@@ -1,6 +1,6 @@
 package com.example.proyectoaula;
 
-// Importaciones necesarias
+// Importaciones
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -10,28 +10,24 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.room.Room;
-
 import com.google.android.material.navigation.NavigationView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
@@ -39,8 +35,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
-// Importaciones requeridas para la conversión de fechas con ThreeTenABP
+// Importaciones DE THREETENABP que son las que valen
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZoneId;
@@ -51,32 +48,31 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
     private MaterialCalendarView calendarView;
     private ActivityResultLauncher<Intent> addReminderLauncher;
     private AppDatabase db;
+    private ReminderDao reminderDao;
 
     private final ActivityResultLauncher<String> requestNotificationPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
+                    // Este ya está en tus strings
                     Toast.makeText(this, R.string.gracias_por_permitir_las_notificaciones_Main2, Toast.LENGTH_SHORT).show();
                 } else {
+                    // Este ya está en tus strings
                     Toast.makeText(this, R.string.no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2, Toast.LENGTH_LONG).show();
                 }
             });
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        db = Room.databaseBuilder(getApplicationContext(),
-                        AppDatabase.class, "task-database")
-                .fallbackToDestructiveMigration()
-                .allowMainThreadQueries().build();
+        // Se obtiene la instancia ÚNICA de la base de datos y su DAO
+        db = AppDatabase.getDatabase(this);
+        reminderDao = db.reminderDao();
 
         setupToolbarAndNavigation();
-
         calendarView = findViewById(R.id.calendarView);
         setupCalendar();
-
         setupActivityLauncher();
         askNotificationPermission();
         checkAndRequestAutoStartPermission();
@@ -106,7 +102,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         calendarView.setSelectedDate(CalendarDay.today());
         calendarView.setWeekDayTextAppearance(R.style.CustomWeekDayText);
 
-        // Formatea el título para que el mes empiece con mayúscula
         calendarView.setTitleFormatter(day -> {
             SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
             LocalDate localDate = day.getDate();
@@ -116,76 +111,65 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
             return Character.toUpperCase(title.charAt(0)) + title.substring(1);
         });
 
-        // Listener para cuando el usuario selecciona una fecha
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
             if (selected) {
-                List<Task> tasksForDay = getTasksForDate(date);
-                if (tasksForDay.isEmpty()) {
-                    Toast.makeText(this, "No hay actividades para este día.", Toast.LENGTH_SHORT).show();
-                } else {
-                    showTasksDialog(tasksForDay, date);
-                }
+                AppDatabase.databaseWriteExecutor.execute(() -> {
+                    LocalDate selectedDate = date.getDate();
+                    long startMillis = selectedDate.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+                    long endMillis = selectedDate.plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+
+                    final List<Reminder> reminders = reminderDao.getRemindersBetween(startMillis, endMillis);
+
+                    runOnUiThread(() -> {
+                        if (reminders.isEmpty()) {
+                            // ===== INICIO DE LA CORRECCIÓN =====
+                            // Usamos el recurso de string que acabas de añadir.
+                            Toast.makeText(MainActivity2.this, R.string.calendar_no_activities, Toast.LENGTH_SHORT).show();
+                            // ===== FIN DE LA CORRECCIÓN =====
+                        } else {
+                            Intent intent = new Intent(MainActivity2.this, DayDetailsActivity.class);
+                            intent.putExtra(DayDetailsActivity.EXTRA_TIMESTAMP, startMillis);
+                            startActivity(intent);
+                        }
+                    });
+                });
             }
         });
     }
 
     private void loadAndDecorateEvents() {
-        List<Task> allTasks = db.taskDao().getAll();
-        HashSet<CalendarDay> eventDays = new HashSet<>();
-        for (Task task : allTasks) {
-            long timestamp = task.getTimestamp();
-            if (timestamp > 0) {
-                Instant instant = Instant.ofEpochMilli(timestamp);
-                LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-                eventDays.add(CalendarDay.from(localDate));
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            final List<Reminder> allReminders = reminderDao.getAll();
+            final HashSet<CalendarDay> eventDays = new HashSet<>();
+            if (allReminders != null) {
+                for (Reminder reminder : allReminders) {
+                    long timestamp = reminder.timestamp;
+                    if (timestamp > 0) {
+                        Instant instant = Instant.ofEpochMilli(timestamp);
+                        LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+                        eventDays.add(CalendarDay.from(localDate));
+                    }
+                }
             }
-        }
-        calendarView.removeDecorators();
-        if (!eventDays.isEmpty()) {
-            int eventColor = ContextCompat.getColor(this, R.color.event_day_color);
-            calendarView.addDecorator(new EventDecorator(eventColor, eventDays));
-        }
-        calendarView.invalidateDecorators();
+            runOnUiThread(() -> {
+                calendarView.removeDecorators();
+                if (!eventDays.isEmpty()) {
+                    int eventColor = ContextCompat.getColor(MainActivity2.this, R.color.event_day_color);
+                    calendarView.addDecorator(new EventDecorator(eventColor, eventDays));
+                }
+                calendarView.invalidateDecorators();
+            });
+        });
     }
-
-    // ===== INICIO DE LA CORRECCIÓN =====
-    private void showTasksDialog(List<Task> tasks, CalendarDay date) {
-        StringBuilder tasksText = new StringBuilder();
-        for (Task task : tasks) {
-            tasksText.append("• ").append(task.getTitle()).append("\n");
-        }
-        // Para mostrar al usuario, el mes de CalendarDay (que empieza en 1) es correcto.
-        String dialogTitle = String.format(Locale.getDefault(), "Actividades del %d/%d", date.getDay(), date.getMonth());
-
-        new AlertDialog.Builder(this)
-                .setTitle(dialogTitle)
-                .setMessage(tasksText.toString())
-                .setPositiveButton("Cerrar", null)
-                .show();
-    }
-
-    private List<Task> getTasksForDate(CalendarDay date) {
-        // Esta es la forma más simple y correcta
-        Calendar startOfDay = Calendar.getInstance();
-        // Usamos los datos de 'date' y RESTAMOS 1 AL MES para que java.util.Calendar lo entienda.
-        startOfDay.set(date.getYear(), date.getMonth() - 1, date.getDay(), 0, 0, 0);
-        startOfDay.set(Calendar.MILLISECOND, 0);
-
-        Calendar endOfDay = (Calendar) startOfDay.clone();
-        endOfDay.add(Calendar.DAY_OF_MONTH, 1);
-
-        return db.taskDao().getTasksBetween(startOfDay.getTimeInMillis(), endOfDay.getTimeInMillis());
-    }
-    // ===== FIN DE LA CORRECCIÓN =====
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.nav_opcion1) {
-            Intent intent = new Intent(MainActivity2.this, AddReminderActivity.class);
+            Intent intent = new Intent(this, AddReminderActivity.class);
             addReminderLauncher.launch(intent);
         } else if (itemId == R.id.nav_opcion2) {
-            Intent intent = new Intent(MainActivity2.this, AddReminderViewActivity.class);
+            Intent intent = new Intent(this, AddReminderViewActivity.class);
             startActivity(intent);
         } else if (itemId == R.id.nav_settings) {
             Toast.makeText(this, R.string.abriendo_ajustes_Main2, Toast.LENGTH_SHORT).show();
@@ -217,8 +201,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
 
     private void askNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) !=
-                    PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 requestNotificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS);
             }
         }
@@ -228,7 +211,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
         boolean isFirstRun = prefs.getBoolean("isFirstRun", true);
         if (isFirstRun && Build.BRAND.toLowerCase().contains("xiaomi")) {
-            new AlertDialog.Builder(this)
+            new androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle(R.string.permiso_adicional_xiaomi_Main2)
                     .setMessage(R.string.inicio_auto_Main2)
                     .setPositiveButton(R.string.ir_a_ajustes_Main2, (dialog, which) -> {
