@@ -43,8 +43,8 @@
     <string name="nav_opcion1">Añadir Actividades</string>
     <string name="opcion2Temporal">Ver Actividades</string>
     <string name="TittleLinear"> Erro Task </string>
-    <string name="OtrasOpcionesTemporal2">otrasOpcionesTempora2</string>
-    <string name="configuraci_n">Configuración</string>
+    <string name="OtrasOpcionesTemporal2">Otras Opciones</string>
+    <string name="configuraci_n">Calendario Academico</string>
     <string name="acerca_de">Acerca de</string>
 
     //NotificationReciver
