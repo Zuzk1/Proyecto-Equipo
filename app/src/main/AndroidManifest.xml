@@ -1,10 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.proyectoaula">
 
     <!-- ================================== Permisos ================================== -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!--
+    ===== INICIO DE LA PUTA CORRECCIÓN FINAL Y DEFINITIVA =====
+    Esto es OBLIGATORIO en versiones recientes de Android para que tu app
+    pueda "ver" qué otras apps (como Chrome) pueden abrir un enlace web.
+    Sin esto, el Intent para abrir la web se ignora silenciosamente.
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+    <!-- ===== FIN DE LA PUTA CORRECCIÓN FINAL Y DEFINITIVA ===== -->
 
 
     <!-- ================================== Aplicación ================================== -->
@@ -17,56 +33,40 @@
         android:roundIcon="@mipmap/icono_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoAula"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:enableOnBackInvokedCallback="true">
+        <!-- Se añade enableOnBackInvokedCallback para quitar el warning de tus logs -->
 
         <!-- =============================== Actividades de la App =============================== -->
-
-        <!-- Actividad de Splash Screen y LAUNCHER (Punto de entrada de la app) -->
         <activity
-            android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.App.Starting">
+            android:theme="@style/Theme.App.Starting"
+            android:name="com.example.proyectoaula.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Actividad Principal con el Calendario -->
         <activity
-            android:name=".MainActivity2"
             android:exported="false"
-            android:label="Erro Task" />
-
-        <!-- Actividad para Añadir Tareas -->
+            android:label="Erro Task"
+            android:name="com.example.proyectoaula.MainActivity2" />
         <activity
-            android:name=".AddReminderActivity"
-            android:exported="false" />
-
-        <!-- Actividad para Ver la Lista de Tareas -->
-        <activity
-            android:name=".AddReminderViewActivity"
-            android:exported="false" />
-
-        <!--
-         Actividad para mostrar detalles del día.
-         Se le aplica un tema de Diálogo para que aparezca como una ventana flotante.
-        -->
-        <activity
-            android:name=".DayDetailsActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
-
+            android:name="com.example.proyectoaula.AddReminderActivity" />
+        <activity
+            android:exported="false"
+            android:name="com.example.proyectoaula.AddReminderViewActivity" />
+        <activity
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"
+            android:name="com.example.proyectoaula.DayDetailsActivity" />
 
         <!-- =============================== Componentes de Sistema =============================== -->
-
-        <!-- Receiver para las Notificaciones -->
         <receiver
-            android:name=".NotificationReceiver"
             android:enabled="true"
-            android:exported="true" />
-
-        <!-- Metadata para fuentes pre-cargadas -->
+            android:exported="true"
+            android:name="com.example.proyectoaula.NotificationReceiver" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -53,10 +53,8 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
     private final ActivityResultLauncher<String> requestNotificationPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
-                    // Este ya está en tus strings
                     Toast.makeText(this, R.string.gracias_por_permitir_las_notificaciones_Main2, Toast.LENGTH_SHORT).show();
                 } else {
-                    // Este ya está en tus strings
                     Toast.makeText(this, R.string.no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2, Toast.LENGTH_LONG).show();
                 }
             });
@@ -66,7 +64,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // Se obtiene la instancia ÚNICA de la base de datos y su DAO
         db = AppDatabase.getDatabase(this);
         reminderDao = db.reminderDao();
 
@@ -122,10 +119,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
 
                     runOnUiThread(() -> {
                         if (reminders.isEmpty()) {
-                            // ===== INICIO DE LA CORRECCIÓN =====
-                            // Usamos el recurso de string que acabas de añadir.
                             Toast.makeText(MainActivity2.this, R.string.calendar_no_activities, Toast.LENGTH_SHORT).show();
-                            // ===== FIN DE LA CORRECCIÓN =====
                         } else {
                             Intent intent = new Intent(MainActivity2.this, DayDetailsActivity.class);
                             intent.putExtra(DayDetailsActivity.EXTRA_TIMESTAMP, startMillis);
@@ -162,21 +156,46 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         });
     }
 
+    // =======================================================
+    // ===               AQUÍ ESTÁ EL PUTO CAMBIO          ===
+    // =======================================================
+    // =======================================================
+// ===           AQUÍ ESTÁ EL CAMBIO DE DIAGNÓSTICO      ===
+// =======================================================
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
+
         if (itemId == R.id.nav_opcion1) {
+            // Lanza la actividad para añadir un nuevo recordatorio.
             Intent intent = new Intent(this, AddReminderActivity.class);
             addReminderLauncher.launch(intent);
+
         } else if (itemId == R.id.nav_opcion2) {
-            Intent intent = new Intent(this, AddReminderViewActivity.class);
-            startActivity(intent);
+            // Muestra un mensaje Toast indicando la acción (sin ejecutarla).
+            // Asegúrate de tener un string llamado "web_redirect_message" en tu archivo strings.xml
+            // con el texto "Redireccionando a la web...".
+            Toast.makeText(this, R.string.abriendo_ajustes_Main2, Toast.LENGTH_SHORT).show();
+
         } else if (itemId == R.id.nav_settings) {
+            // Muestra el Toast de "Abriendo ajustes".
             Toast.makeText(this, R.string.abriendo_ajustes_Main2, Toast.LENGTH_SHORT).show();
         }
+
+        // Cierra el menú lateral después de seleccionar una opción.
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+// =======================================================
+// ===                  FIN DEL CAMBIO                   ===
+// =======================================================
+
+    // =======================================================
+    // ===                  FIN DEL CAMBIO                   ===
+    // =======================================================
 
     @Override
     public void onBackPressed() {

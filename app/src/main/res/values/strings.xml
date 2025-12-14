@@ -13,7 +13,7 @@
     <string name="ActPendientesGeneral">Sin Actividades Pendientes</string>
     <string name="gracias_por_permitir_las_notificaciones_Main2">Gracias por permitir las notificaciones.</string>
     <string name="no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2">No podremos mostrarte recordatorios si no permites las notificaciones.</string>
-    <string name="abriendo_ajustes_Main2">Abriendo Configuración…</string>
+    <string name="abriendo_ajustes_Main2">Redireccionando a la Web…</string>
     <string name="tarea_guardada_con_exito_Main2">Tarea guardada con exito.</string>
     <string name="permiso_adicional_xiaomi_Main2">Permiso Adicional (Usuarios Xiaomi)</string>
     <string name="inicio_auto_Main2">Para asegurar que las notificaciones funcionen siempre, por favor, activa el \'Inicio Automático\' para esta app.</string>
@@ -43,8 +43,8 @@
     <string name="nav_opcion1">Añadir Actividades</string>
     <string name="opcion2Temporal">Ver Actividades</string>
     <string name="TittleLinear"> Erro Task </string>
-    <string name="OtrasOpcionesTemporal2">otrasOpcionesTempora2</string>
-    <string name="configuraci_n">Configuración</string>
+    <string name="OtrasOpcionesTemporal2">Otras Opciones</string>
+    <string name="configuraci_n">Calendario Academico</string>
     <string name="acerca_de">Acerca de</string>
 
     //NotificationReciver
