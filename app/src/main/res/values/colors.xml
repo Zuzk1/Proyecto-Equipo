@@ -7,4 +7,6 @@
     <color name="primary_color">#FF795548</color>
     <color name="text_color">#FF4E342E</color>
     <color name="hint_color">#FF8D6E63</color>
+    <!-- Color para el punto que marca un día con evento -->
+    <color name="event_day_color">#D32F2F</color>
 </resources>

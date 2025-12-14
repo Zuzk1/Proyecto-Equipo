@@ -57,6 +57,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    // Para manejar fechas y horas, requerido por MaterialCalendarView
+    implementation("com.jakewharton.threetenabp:threetenabp:1.4.6")
+
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
