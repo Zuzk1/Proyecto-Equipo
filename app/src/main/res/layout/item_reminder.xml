@@ -12,6 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/primary_color"
+        android:backgroundTint="@color/primary_color"
         android:padding="16dp">
 
         <!-- ID Correcto: textViewReminderTitle -->
@@ -21,8 +23,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:ellipsize="end"
+            android:fontFamily="@font/biz_udpmincho"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="@color/text_on_dark_primary"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +43,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="@color/text_on_dark_hint"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
             app:layout_constraintStart_toStartOf="parent"

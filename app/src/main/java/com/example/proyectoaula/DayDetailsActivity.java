@@ -6,15 +6,14 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class DayDetailsActivity extends AppCompatActivity {
 
-    // Esta constante no es visible para el usuario, está bien dejarla aquí.
     public static final String EXTRA_TIMESTAMP = "extra_timestamp";
 
     private TextView tvDateTitle;
@@ -25,6 +24,11 @@ public class DayDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // ¡OJO! El título de la barra ("Erro Task") podría venir de aquí o del AndroidManifest.
+        // Si quieres cambiarlo dinámicamente, usa:
+        // getSupportActionBar().setTitle("Tu nuevo título");
+
         setContentView(R.layout.activity_day_details);
 
         tvDateTitle = findViewById(R.id.tvDateTitle);
@@ -37,12 +41,10 @@ public class DayDetailsActivity extends AppCompatActivity {
         Log.d("DAY_DETAILS_DEBUG", "Timestamp recibido: " + startOfDayTimestamp);
 
         if (startOfDayTimestamp != -1) {
+            // ... (el código cuando todo va bien no cambia)
             Calendar startOfDay = Calendar.getInstance(TimeZone.getDefault());
             startOfDay.setTimeInMillis(startOfDayTimestamp);
 
-            // =======================================================
-            // === USA EL RECURSO DE STRING PARA EL TÍTULO
-            // =======================================================
             String dialogTitle = getString(R.string.day_details_title,
                     startOfDay.get(Calendar.DAY_OF_MONTH),
                     startOfDay.get(Calendar.MONTH) + 1);
@@ -55,14 +57,8 @@ public class DayDetailsActivity extends AppCompatActivity {
 
                 final List<Reminder> reminders = reminderDao.getRemindersBetween(startOfDayTimestamp, endOfDayTimestamp);
 
-                Log.d("DAY_DETAILS_DEBUG", "Buscando entre: " + startOfDayTimestamp + " y " + endOfDayTimestamp);
-                Log.d("DAY_DETAILS_DEBUG", "Reminders encontrados: " + reminders.size());
-
                 new Handler(Looper.getMainLooper()).post(() -> {
                     if (reminders.isEmpty()) {
-                        // =======================================================
-                        // === USA EL RECURSO DE STRING PARA "NO HAY ACTIVIDADES"
-                        // =======================================================
                         tvTasksList.setText(R.string.day_details_no_activities);
                     } else {
                         StringBuilder tasksText = new StringBuilder();
@@ -73,12 +69,19 @@ public class DayDetailsActivity extends AppCompatActivity {
                     }
                 });
             });
+
         } else {
-            // =======================================================
-            // === USA LOS RECURSOS DE STRING PARA LOS MENSAJES DE ERROR
-            // =======================================================
+            // --- ¡AQUÍ ESTÁ LA CORRECCIÓN PARA EL TEXTO DEL ERROR! ---
+            // Asignamos los textos de error desde los recursos.
             tvDateTitle.setText(R.string.day_details_error_title);
             tvTasksList.setText(R.string.day_details_error_message);
+
+            // Se aplican los colores de error correctos.
+            // El título del error debe ser llamativo (rojo).
+            tvDateTitle.setTextColor(ContextCompat.getColor(this, R.color.background_color));
+
+            // El mensaje del error puede ser más sutil.
+            tvTasksList.setTextColor(ContextCompat.getColor(this, R.color.text_color));
         }
     }
 }

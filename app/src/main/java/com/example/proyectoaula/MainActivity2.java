@@ -167,18 +167,22 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         int itemId = item.getItemId();
 
         if (itemId == R.id.nav_opcion1) {
-            // Lanza la actividad para añadir un nuevo recordatorio.
+            // Opción 1: Lanza la actividad para añadir un nuevo recordatorio.
             Intent intent = new Intent(this, AddReminderActivity.class);
             addReminderLauncher.launch(intent);
 
         } else if (itemId == R.id.nav_opcion2) {
-            // Muestra un mensaje Toast indicando la acción (sin ejecutarla).
-            // Asegúrate de tener un string llamado "web_redirect_message" en tu archivo strings.xml
-            // con el texto "Redireccionando a la web...".
-            Toast.makeText(this, R.string.abriendo_ajustes_Main2, Toast.LENGTH_SHORT).show();
+            // --- CAMBIO AQUÍ ---
+            // Ahora, esta opción también lanza la actividad para añadir recordatorios,
+            // en lugar de solo mostrar un mensaje.
+            Intent intent = new Intent(this, AddReminderViewActivity.class);
+            addReminderLauncher.launch(intent);
+            // Si quisieras que hiciera otra cosa, como mostrar una lista de actividades,
+            // aquí es donde deberías iniciar esa otra actividad.
 
         } else if (itemId == R.id.nav_settings) {
             // Muestra el Toast de "Abriendo ajustes".
+            // Esta acción aún no está implementada, solo muestra un mensaje.
             Toast.makeText(this, R.string.abriendo_ajustes_Main2, Toast.LENGTH_SHORT).show();
         }
 
@@ -186,16 +190,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-
-// =======================================================
-// ===                  FIN DEL CAMBIO                   ===
-// =======================================================
-
-    // =======================================================
-    // ===                  FIN DEL CAMBIO                   ===
-    // =======================================================
 
     @Override
     public void onBackPressed() {
