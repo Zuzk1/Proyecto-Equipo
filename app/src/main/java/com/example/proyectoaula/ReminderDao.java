@@ -18,9 +18,7 @@ public interface ReminderDao {
     @Delete
     void delete(Reminder reminder);
 
-    // =================================================================
-    // === ESTE MÉTODO ES ESENCIAL, ASEGÚRATE DE QUE ESTÉ AQUÍ ===
-    // =================================================================
+
     /**
      * Obtiene todos los recordatorios que están dentro de un rango de tiempo (un día completo).
      * @param from El timestamp de inicio del día.
