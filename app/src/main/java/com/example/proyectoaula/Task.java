@@ -3,6 +3,8 @@ package com.example.proyectoaula;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 // @Entity le dice a Room que esta clase es una tabla en la base de datos.
 @Entity(tableName = "tasks")
@@ -18,9 +20,13 @@ public class Task {
     @ColumnInfo(name = "task_note")
     private String note;
 
-    // Nuevo campo para guardar la fecha
     @ColumnInfo(name = "task_date")
     private String date;
+
+    // --- NUEVO CAMPO ---
+    // Guarda la fecha y hora como un número largo (timestamp) para consultas eficientes.
+    @ColumnInfo(name = "timestamp")
+    private long timestamp;
 
     @ColumnInfo(name = "task_hour")
     private int hour;
@@ -31,7 +37,7 @@ public class Task {
     @ColumnInfo(name = "use_notification")
     private boolean useNotification;
 
-    // Constructor modificado para incluir la fecha
+    // Constructor modificado para calcular y guardar el timestamp.
     public Task(String title, String note, String date, int hour, int minute, boolean useNotification) {
         this.title = title;
         this.note = note;
@@ -39,6 +45,7 @@ public class Task {
         this.hour = hour;
         this.minute = minute;
         this.useNotification = useNotification;
+        this.timestamp = calculateTimestamp(date, hour, minute); // Calcula el timestamp al crear la tarea.
     }
 
     // --- GETTERS Y SETTERS (Room los necesita) ---
@@ -48,6 +55,8 @@ public class Task {
     public void setNote(String note) { this.note = note; }
     public String getDate() { return date; }
     public void setDate(String date) { this.date = date; }
+    public long getTimestamp() { return timestamp; } // Getter para el nuevo campo.
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp; } // Setter para el nuevo campo.
     public int getHour() { return hour; }
     public void setHour(int hour) { this.hour = hour; }
     public int getMinute() { return minute; }
@@ -58,5 +67,19 @@ public class Task {
     public String getFormattedTime() {
         if (hour == -1 || minute == -1) { return "Sin hora"; }
         return String.format("%02d:%02d", hour, minute);
+    }
+
+    // Método privado para convertir la fecha y hora a un timestamp.
+    private long calculateTimestamp(String dateStr, int hour, int minute) {
+        try {
+            String[] parts = dateStr.split("/");
+            int day = Integer.parseInt(parts[0]);
+            int month = Integer.parseInt(parts[1]) - 1; // El mes en Calendar empieza en 0.
+            int year = Integer.parseInt(parts[2]);
+            Calendar calendar = new GregorianCalendar(year, month, day, hour, minute);
+            return calendar.getTimeInMillis();
+        } catch (Exception e) {
+            return 0; // Devuelve 0 si la fecha no es válida.
+        }
     }
 }
