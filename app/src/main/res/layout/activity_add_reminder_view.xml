@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -15,7 +16,7 @@
         android:fontFamily="@font/biz_udpmincho"
         android:gravity="center"
         android:padding="16dp"
-        android:text="Actividades"
+        android:text="@string/view_reminders_title"
         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
         android:textColor="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,7 @@
         android:id="@+id/textViewEmptyState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¡No tienes recordatorios pendientes!"
+        android:text="@string/view_reminders_empty_state"
         android:textSize="18sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,3 +49,4 @@
         app:layout_constraintTop_toBottomOf="@+id/headtittle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
