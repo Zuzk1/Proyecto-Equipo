@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">Erro Task</string>
+
+    //Main1Activity
+    <string name="BarraProgreso" translatable="false">Cargando</string>
+    <string name="ProgresoTxt" translatable="false">Iniciando</string>
+
+    //Main2Activity Apartado del Menu de Opciones cuando seleccionas un dia en el calendario
+    <string name="ActividadesPendientesMain2" translatable="false">Añadir Actividades Pendientes</string>
+    <string name="CancelarMain2" translatable="false">Cancelar</string>
+    <string name="OpcionesParaElMain2" translatable="false">"Opciones para el: "</string>
+    <string name="SubtittleAct" translatable="false">Actividades Pendientes: </string>
+    <string name="ActPendientesGeneral" translatable="false">Sin Actividades Pendientes</string>
+    <string name="gracias_por_permitir_las_notificaciones_Main2" translatable="false">Gracias por permitir las notificaciones.</string>
+    <string name="no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2" translatable="false">No podremos mostrarte recordatorios si no permites las notificaciones.</string>
+    <string name="abriendo_ajustes_Main2" translatable="false">Redireccionando a la Web…</string>
+    <string name="tarea_guardada_con_exito_Main2" translatable="false">Tarea guardada con exito.</string>
+    <string name="permiso_adicional_xiaomi_Main2" translatable="false">Permiso Adicional (Usuarios Xiaomi)</string>
+    <string name="inicio_auto_Main2" translatable="false">Para asegurar que las notificaciones funcionen siempre, por favor, activa el \'Inicio Automático\' para esta app.</string>
+    <string name="ir_a_ajustes_Main2" translatable="false">Ir a Ajustes</string>
+    <string name="ahora_no_notis_Main2" translatable="false">Ahora no</string>
+    <string name="calendar_no_activities" translatable="false">No hay actividades para este día.</string>
+
+    //AddReminderMain and Activity Strings
+    <string name="TittleNewAct" translatable="false">Actividad Nueva</string>
+    <string name="ActNameEdit" translatable="false">Nombre de la Actividad</string>
+    <string name="ActNoteEdit" translatable="false">Agregar Nota (Opcional)</string>
+    <string name="NotificationSwitch" translatable="false">Activar Notificacion</string>
+    <string name="ButtonSave" translatable="false">Guardar Actividad</string>
+    <string name="permiso_concedido_addRemAct" translatable="false">Permiso concedido. Intenta guardar nuevamente porfavor :V.</string>
+    <string name="permiso_necesario_AddRemAct" translatable="false">Permiso Necesario</string>
+    <string name="permiso_especial_AddRemAct" translatable="false">Para que los recordatorios suenen a la hora exacta, necesitamos un permiso especial. Por favor, ayudanos activandolo :).</string>
+    <string name="ir_a_los_ajustes_AddRemAct" translatable="false">Ir a los Ajustes</string>
+    <string name="cancelar_AddRemAct" translatable="false">Cancelar</string>
+    <string name="recordatorio_AddRemAct" translatable="false">Recordatorio</string>
+    <string name="recordatorio_programado_con_exito_AddRemAct" translatable="false">Actividad Guardada con exito :P</string>
+    <string name="add_reminder_select_date" translatable="false">Seleccionar fecha</string>
+    <string name="add_reminder_select_time" translatable="false">Seleccionar hora</string>
+
+    //Barra Lateral
+    <string name="navigation_drawer_open" translatable="false">Abrir menú de navegación</string>
+    <string name="navigation_drawer_close" translatable="false">Cerrar menú de navegación</string>
+    <string name="nav_opcion1" translatable="false">Añadir Actividades</string>
+    <string name="opcion2Temporal" translatable="false">Ver Actividades</string>
+    <string name="TittleLinear"> Erro Task </string>
+    <string name="OtrasOpcionesTemporal2" translatable="false">Otras Opciones</string>
+    <string name="configuraci_n" translatable="false">Calendario Academico</string>
+    <string name="acerca_de" translatable="false">Acerca de</string>
+
+    //NotificationReciver
+    <string name="recordatorios_de_actividades_NotiReci" translatable="false">Recordatorios de Actividades</string>
+    <string name="canal_actividades_pendientes_NotiReci" translatable="false">Canal para notificaciones de Actividades pendientes</string>
+
+    //ItemReminder
+    <string name="eliminar_recordatorio_ItemReminder" translatable="false">Eliminar recordatorio</string>
+
+    //DayDetailsMain
+    <string name="day_details_title" translatable="false">Actividades Pendientes para el %1$d/%2$d</string>
+    <string name="day_details_no_activities" translatable="false">No hay actividades para este día.</string>
+    <string name="day_details_error_title" translatable="false">Error</string>
+    <string name="day_details_error_message" translatable="false">No se pudo cargar la fecha seleccionada.</string>
+
+    //AddReminderMain Strings
+    <string name="LasNotificacionsEstanActivadasReminder" translatable="false">Las notificaciones están activadas</string>
+    <string name="LasNotificacionesEstanDesactivadasReminder" translatable="false">Las notificaciones están desactivadas</string>
+    <string name="TareaReminder" translatable="false">Tarea \'</string>
+    <string name="GuardadaReminder" translatable="false">\' guardada.</string>
+    <string name="PVSeleccionaUnaHoraReminder" translatable="false">Por favor, selecciona una hora para la notificación</string>
+    <string name="TituloNoVacioReminder" translatable="false">El título no puede estar vacío</string>
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //AddReminderView Strings
+    <string name="view_reminders_title" translatable="false">Actividades</string>
+    <string name="view_reminders_empty_state" translatable="false">No tienes actividades pendientes</string>
+
+    //ActivityDayDetails Strings
+    <string name="day_details_preview_title" translatable="false">Actividades del 14/12</string>
+    <string name="day_details_preview_tasks" translatable="false">• Tarea 1\n• Tarea 2\n• Tarea 3</string>
+
+    //calendar_academic_images Strings
+    <string name="HeadTittleCalendarAc" translatable="false">Calendario Academico</string>
+    <string name="textView" translatable="false">Presiona cualquier imagen para ampliarla</string>
+
+    //Acerca de Strings
+    <string name="about_app_name">Erro Task</string>
+    <string name="about_version" translatable="false">Versión 1.0</string>
+    <string name="about_programming_title" translatable="false">Programación</string>
+    <string name="about_programmers_names" translatable="false">Zuzk1.Gwx\nEn_Novi\nDazz.Imv</string>
+    <string name="about_icon_design_title" translatable="false">Diseño de Iconos</string>
+    <string name="about_icon_designer_name" translatable="false">Paus.Treb</string>
+    <string name="about_collaborator_title" translatable="false">Colaborador</string>
+    <string name="about_collaborator_name" translatable="false">Gemini</string>
+    <string name="about_logo_description" translatable="false">Logo de la aplicación Erro Task</string>
+
+
+
+
+
+
+
+</resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Erro Task</string>
+
+    <!-- Main1Activity -->
+    <string name="BarraProgreso">Loading</string>
+    <string name="ProgresoTxt">Starting</string>
+
+    <!-- Main2Activity Options Menu -->
+    <string name="ActividadesPendientesMain2">Add Pending Activities</string>
+    <string name="CancelarMain2">Cancel</string>
+    <string name="OpcionesParaElMain2">"Options for: "</string>
+    <string name="SubtittleAct">Pending Activities: </string>
+    <string name="ActPendientesGeneral">No Pending Activities</string>
+    <string name="gracias_por_permitir_las_notificaciones_Main2">Thanks for allowing notifications.</string>
+    <string name="no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2">We can\'t show you reminders if you don\'t allow notifications.</string>
+    <string name="abriendo_ajustes_Main2">Redirecting…</string>
+    <string name="tarea_guardada_con_exito_Main2">Task saved successfully.</string>
+    <string name="permiso_adicional_xiaomi_Main2">Additional Permission (Xiaomi Users)</string>
+    <string name="inicio_auto_Main2">To ensure notifications always work, please enable \'Autostart\' for this app.</string>
+    <string name="ir_a_ajustes_Main2">Go to Settings</string>
+    <string name="ahora_no_notis_Main2">Not Now</string>
+    <string name="calendar_no_activities">No activities for this day.</string>
+
+    <!-- AddReminderMain and Activity Strings -->
+    <string name="TittleNewAct">New Activity</string>
+    <string name="ActNameEdit">Activity Name</string>
+    <string name="ActNoteEdit">Add Note (Optional)</string>
+    <string name="NotificationSwitch">Enable Notification</string>
+    <string name="ButtonSave">Save Activity</string>
+    <string name="permiso_concedido_addRemAct">Permission granted. Please try saving again :V.</string>
+    <string name="permiso_necesario_AddRemAct">Permission Required</string>
+    <string name="permiso_especial_AddRemAct">For reminders to work correctly, we need a special permission. Please help us by enabling it :).</string>
+    <string name="ir_a_los_ajustes_AddRemAct">Go to Settings</string>
+    <string name="cancelar_AddRemAct">Cancel</string>
+    <string name="recordatorio_AddRemAct">Reminder</string>
+    <string name="recordatorio_programado_con_exito_AddRemAct">Activity saved successfully :P</string>
+    <string name="add_reminder_select_date">Select date</string>
+    <string name="add_reminder_select_time">Select time</string>
+
+    <!-- Side Bar -->
+    <string name="navigation_drawer_open">Open navigation menu</string>
+    <string name="navigation_drawer_close">Close navigation menu</string>
+    <string name="nav_opcion1">Add Activities</string>
+    <string name="opcion2Temporal">View Activities</string>
+    <string name="TittleLinear"> Erro Task </string>
+    <string name="OtrasOpcionesTemporal2">Other Options</string>
+    <string name="configuraci_n">Academic Calendar</string>
+    <string name="acerca_de">About</string>
+
+    <!-- NotificationReceiver -->
+    <string name="recordatorios_de_actividades_NotiReci">Activity Reminders</string>
+    <string name="canal_actividades_pendientes_NotiReci">Channel for pending activity notifications</string>
+
+    <!-- ItemReminder -->
+    <string name="eliminar_recordatorio_ItemReminder">Delete reminder</string>
+
+    <!-- DayDetailsMain -->
+    <string name="day_details_title">Pending Activities for %1$d/%2$d</string>
+    <string name="day_details_no_activities">No activities for this day.</string>
+    <string name="day_details_error_title">Error</string>
+    <string name="day_details_error_message">Could not load the selected date.</string>
+
+    <!-- AddReminderMain Strings -->
+    <string name="LasNotificacionsEstanActivadasReminder">Notifications are enabled</string>
+    <string name="LasNotificacionesEstanDesactivadasReminder">Notifications are disabled</string>
+    <string name="TareaReminder">Task \'</string>
+    <string name="GuardadaReminder">\' saved.</string>
+    <string name="PVSeleccionaUnaHoraReminder">Please select a time for the notification</string>
+    <string name="TituloNoVacioReminder">The title cannot be empty</string>
+
+    <!-- AddReminderView Strings -->
+    <string name="view_reminders_title">Activities</string>
+    <string name="view_reminders_empty_state">You have no pending activities</string>
+
+    <!-- ActivityDayDetails Strings -->
+    <string name="day_details_preview_title">Activities for 12/14</string>
+    <string name="day_details_preview_tasks">• Task 1\n• Task 2\n• Task 3</string>
+
+    <!-- calendar_academic_images Strings -->
+    <string name="HeadTittleCalendarAc">Academic Calendar</string>
+    <string name="textView">Tap any image to enlarge</string>
+
+    <!-- About Strings -->
+    <string name="about_app_name">Erro Task</string>
+    <string name="about_version">Version 1.0</string>
+    <string name="about_programming_title">Programming</string>
+    <string name="about_programmers_names">Zuzk1.Gwx\nEn_Novi\nDazz.Imv</string>
+    <string name="about_icon_design_title">Icon Design</string>
+    <string name="about_icon_designer_name">Paus.Treb</string>
+    <string name="about_collaborator_title">Collaborator</string>
+    <string name="about_collaborator_name">Gemini</string>
+    <string name="about_logo_description">Erro Task application logo</string>
+
+</resources>

@@ -1,6 +1,7 @@
 package com.example.proyectoaula;
 
-// Importaciones
+// Importaciones (Añadí las que faltaban para el diálogo)
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -10,14 +11,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -28,21 +30,20 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
+import org.threeten.bp.Instant;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneId;
+
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
-
-// Importaciones DE THREETENABP que son las que valen
-import org.threeten.bp.Instant;
-import org.threeten.bp.LocalDate;
-import org.threeten.bp.ZoneId;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    // Se eliminó la línea "final Dialog dialog = new Dialog(this);" de aquí
 
     private DrawerLayout drawerLayout;
     private MaterialCalendarView calendarView;
@@ -156,12 +157,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         });
     }
 
-    // =======================================================
-    // ===               AQUÍ ESTÁ EL PUTO CAMBIO          ===
-    // =======================================================
-    // =======================================================
-// ===           AQUÍ ESTÁ EL CAMBIO DE DIAGNÓSTICO      ===
-// =======================================================
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -172,24 +167,44 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
             addReminderLauncher.launch(intent);
 
         } else if (itemId == R.id.nav_opcion2) {
-            // --- CAMBIO AQUÍ ---
-            // Ahora, esta opción también lanza la actividad para añadir recordatorios,
-            // en lugar de solo mostrar un mensaje.
+            // Opción 2: Lanza la actividad para añadir recordatorios
             Intent intent = new Intent(this, AddReminderViewActivity.class);
             addReminderLauncher.launch(intent);
-            // Si quisieras que hiciera otra cosa, como mostrar una lista de actividades,
-            // aquí es donde deberías iniciar esa otra actividad.
 
         } else if (itemId == R.id.nav_settings) {
-            // Muestra el Toast de "Abriendo ajustes".
-            // Esta acción aún no está implementada, solo muestra un mensaje.
-            Toast.makeText(this, R.string.abriendo_ajustes_Main2, Toast.LENGTH_SHORT).show();
+            // Inicia la actividad que muestra la imagen del calendario.
+            Intent intent = new Intent(this, calendar_academic_images.class);
+            startActivity(intent);
+
+        } else if (itemId == R.id.nav_about) {
+            // En lugar de un Intent, llamamos a la función que muestra el diálogo.
+            showAcercaDeDialog();
         }
 
         // Cierra el menú lateral después de seleccionar una opción.
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    // ----- FUNCIÓN AÑADIDA -----
+    private void showAcercaDeDialog() {
+        // 1. Crea un diálogo
+        final Dialog dialog = new Dialog(this);
+
+        // 2. Opcional: Ponle un título
+        dialog.setTitle("Acerca de Erro Task");
+
+        // 3. "Infla" (carga) tu layout XML del "Acerca de"
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_acerca_de, null);
+
+        // 4. Establece la vista como el contenido del diálogo
+        dialog.setContentView(dialogView);
+
+        // 5. Muestra el diálogo
+        dialog.show();
+    }
+    // ------------------------------------
 
     @Override
     public void onBackPressed() {
@@ -232,7 +247,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
                             startActivity(getAutoStartPermissionIntent(MainActivity2.this));
                         } catch (Exception e) {
                             startActivity(new Intent(Settings.ACTION_SETTINGS));
-                            e.printStackTrace();
                         }
                     })
                     .setNegativeButton(R.string.ahora_no_notis_Main2, null)

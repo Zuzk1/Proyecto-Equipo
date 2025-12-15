@@ -65,4 +65,9 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     // Opcional, pero muy recomendado para no congelar la app
     implementation("androidx.room:room-ktx:$room_version")
+
+    // ----- LÍNEAS AÑADIDAS PARA GLIDE -----
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
+    // ------------------------------------
 }

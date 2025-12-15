@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Erro Task</string>
+
+    <!-- Main1Activity -->
+    <string name="BarraProgreso">正在加载</string>
+    <string name="ProgresoTxt">正在启动</string>
+
+    <!-- Main2Activity Options Menu -->
+    <string name="ActividadesPendientesMain2">添加待办活动</string>
+    <string name="CancelarMain2">取消</string>
+    <string name="OpcionesParaElMain2">"选项: "</string>
+    <string name="SubtittleAct">待办活动: </string>
+    <string name="ActPendientesGeneral">没有待办活动</string>
+    <string name="gracias_por_permitir_las_notificaciones_Main2">感谢您允许通知。</string>
+    <string name="no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2">如果您不允许通知，我们将无法向您显示提醒。</string>
+    <string name="abriendo_ajustes_Main2">正在重定向…</string>
+    <string name="tarea_guardada_con_exito_Main2">任务已成功保存。</string>
+    <string name="permiso_adicional_xiaomi_Main2">附加权限 (小米用户)</string>
+    <string name="inicio_auto_Main2">为确保通知始终有效，请为此应用启用“自动启动”。</string>
+    <string name="ir_a_ajustes_Main2">前往设置</string>
+    <string name="ahora_no_notis_Main2">以后再说</string>
+    <string name="calendar_no_activities">今天没有活动。</string>
+
+    <!-- AddReminderMain and Activity Strings -->
+    <string name="TittleNewAct">新活动</string>
+    <string name="ActNameEdit">活动名称</string>
+    <string name="ActNoteEdit">添加备注 (可选)</string>
+    <string name="NotificationSwitch">启用通知</string>
+    <string name="ButtonSave">保存活动</string>
+    <string name="permiso_concedido_addRemAct">权限已授予。请重试保存 :V。</string>
+    <string name="permiso_necesario_AddRemAct">需要权限</string>
+    <string name="permiso_especial_AddRemAct">为确保提醒正常工作，我们需要一项特殊权限。请启用它以帮助我们 :)。</string>
+    <string name="ir_a_los_ajustes_AddRemAct">前往设置</string>
+    <string name="cancelar_AddRemAct">取消</string>
+    <string name="recordatorio_AddRemAct">提醒</string>
+    <string name="recordatorio_programado_con_exito_AddRemAct">活动已成功保存 :P</string>
+    <string name="add_reminder_select_date">选择日期</string>
+    <string name="add_reminder_select_time">选择时间</string>
+
+    <!-- Side Bar -->
+    <string name="navigation_drawer_open">打开导航菜单</string>
+    <string name="navigation_drawer_close">关闭导航菜单</string>
+    <string name="nav_opcion1">添加活动</string>
+    <string name="opcion2Temporal">查看活动</string>
+    <string name="TittleLinear"> Erro Task </string>
+    <string name="OtrasOpcionesTemporal2">其他选项</string>
+    <string name="configuraci_n">校历</string>
+    <string name="acerca_de">关于</string>
+
+    <!-- NotificationReceiver -->
+    <string name="recordatorios_de_actividades_NotiReci">活动提醒</string>
+    <string name="canal_actividades_pendientes_NotiReci">待办活动通知渠道</string>
+
+    <!-- ItemReminder -->
+    <string name="eliminar_recordatorio_ItemReminder">删除提醒</string>
+
+    <!-- DayDetailsMain -->
+    <string name="day_details_title">%1$d/%2$d 的待办活动</string>
+    <string name="day_details_no_activities">今天没有活动。</string>
+    <string name="day_details_error_title">错误</string>
+    <string name="day_details_error_message">无法加载所选日期。</string>
+
+    <!-- AddReminderMain Strings -->
+    <string name="LasNotificacionsEstanActivadasReminder">通知已启用</string>
+    <string name="LasNotificacionesEstanDesactivadasReminder">通知已禁用</string>
+    <string name="TareaReminder">任务 ‘</string>
+    <string name="GuardadaReminder">’ 已保存。</string>
+    <string name="PVSeleccionaUnaHoraReminder">请为通知选择一个时间</string>
+    <string name="TituloNoVacioReminder">标题不能为空</string>
+
+    <!-- AddReminderView Strings -->
+    <string name="view_reminders_title">活动</string>
+    <string name="view_reminders_empty_state">您没有待办活动</string>
+
+    <!-- ActivityDayDetails Strings -->
+    <string name="day_details_preview_title">12/14 的活动</string>
+    <string name="day_details_preview_tasks">• 任务 1\n• 任务 2\n• 任务 3</string>
+
+    <!-- calendar_academic_images Strings -->
+    <string name="HeadTittleCalendarAc">校历</string>
+    <string name="textView">点击任意图片放大</string>
+
+    <!-- About Strings -->
+    <string name="about_app_name">Erro Task</string>
+    <string name="about_version">版本 1.0</string>
+    <string name="about_programming_title">编程</string>
+    <string name="about_programmers_names">Zuzk1.Gwx\nEn_Novi\nDazz.Imv</string>
+    <string name="about_icon_design_title">图标设计</string>
+    <string name="about_icon_designer_name">Paus.Treb</string>
+    <string name="about_collaborator_title">协作者</string>
+    <string name="about_collaborator_name">Gemini</string>
+    <string name="about_logo_description">Erro Task 应用程序徽标</string>
+</resources>

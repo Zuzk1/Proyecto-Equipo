@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Erro Task</string>
+
+    <!-- Main1Activity -->
+    <string name="BarraProgreso">読み込み中</string>
+    <string name="ProgresoTxt">起動中</string>
+
+    <!-- Main2Activity Options Menu -->
+    <string name="ActividadesPendientesMain2">保留中のアクティビティを追加</string>
+    <string name="CancelarMain2">キャンセル</string>
+    <string name="OpcionesParaElMain2">"オプション: "</string>
+    <string name="SubtittleAct">保留中のアクティビティ: </string>
+    <string name="ActPendientesGeneral">保留中のアクティビティはありません</string>
+    <string name="gracias_por_permitir_las_notificaciones_Main2">通知を許可していただきありがとうございます。</string>
+    <string name="no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2">通知を許可しないと、リマインダーを表示できません。</string>
+    <string name="abriendo_ajustes_Main2">リダイレクト中…</string>
+    <string name="tarea_guardada_con_exito_Main2">タスクは正常に保存されました。</string>
+    <string name="permiso_adicional_xiaomi_Main2">追加の権限 (Xiaomiユーザー)</string>
+    <string name="inicio_auto_Main2">通知が常に機能するように、このアプリの「自動起動」を有効にしてください。</string>
+    <string name="ir_a_ajustes_Main2">設定に移動</string>
+    <string name="ahora_no_notis_Main2">後で</string>
+    <string name="calendar_no_activities">この日のアクティビティはありません。</string>
+
+    <!-- AddReminderMain and Activity Strings -->
+    <string name="TittleNewAct">新しいアクティビティ</string>
+    <string name="ActNameEdit">アクティビティ名</string>
+    <string name="ActNoteEdit">メモを追加 (任意)</string>
+    <string name="NotificationSwitch">通知を有効にする</string>
+    <string name="ButtonSave">アクティビティを保存</string>
+    <string name="permiso_concedido_addRemAct">権限が付与されました。もう一度保存してみてください :V。</string>
+    <string name="permiso_necesario_AddRemAct">権限が必要です</string>
+    <string name="permiso_especial_AddRemAct">リマインダーが正しく機能するためには、特別な権限が必要です。有効にしてご協力ください :)。</string>
+    <string name="ir_a_los_ajustes_AddRemAct">設定に移動</string>
+    <string name="cancelar_AddRemAct">キャンセル</string>
+    <string name="recordatorio_AddRemAct">リマインダー</string>
+    <string name="recordatorio_programado_con_exito_AddRemAct">アクティビティは正常に保存されました :P</string>
+    <string name="add_reminder_select_date">日付を選択</string>
+    <string name="add_reminder_select_time">時間を選択</string>
+
+    <!-- Side Bar -->
+    <string name="navigation_drawer_open">ナビゲーションメニューを開く</string>
+    <string name="navigation_drawer_close">ナビゲーションメニューを閉じる</string>
+    <string name="nav_opcion1">アクティビティを追加</string>
+    <string name="opcion2Temporal">アクティビティを表示</string>
+    <string name="TittleLinear"> Erro Task </string>
+    <string name="OtrasOpcionesTemporal2">その他のオプション</string>
+    <string name="configuraci_n">アカデミックカレンダー</string>
+    <string name="acerca_de">概要</string>
+
+    <!-- NotificationReceiver -->
+    <string name="recordatorios_de_actividades_NotiReci">アクティビティリマインダー</string>
+    <string name="canal_actividades_pendientes_NotiReci">保留中のアクティビティ通知用チャンネル</string>
+
+    <!-- ItemReminder -->
+    <string name="eliminar_recordatorio_ItemReminder">リマインダーを削除</string>
+
+    <!-- DayDetailsMain -->
+    <string name="day_details_title">%1$d/%2$d の保留中のアクティビティ</string>
+    <string name="day_details_no_activities">この日のアクティビティはありません。</string>
+    <string name="day_details_error_title">エラー</string>
+    <string name="day_details_error_message">選択した日付を読み込めませんでした。</string>
+
+    <!-- AddReminderMain Strings -->
+    <string name="LasNotificacionsEstanActivadasReminder">通知は有効です</string>
+    <string name="LasNotificacionesEstanDesactivadasReminder">通知は無効です</string>
+    <string name="TareaReminder">タスク \'</string>
+    <string name="GuardadaReminder">\' は保存されました。</string>
+    <string name="PVSeleccionaUnaHoraReminder">通知の時間を選択してください</string>
+    <string name="TituloNoVacioReminder">タイトルは空にできません</string>
+
+    <!-- AddReminderView Strings -->
+    <string name="view_reminders_title">アクティビティ</string>
+    <string name="view_reminders_empty_state">保留中のアクティビティはありません</string>
+
+    <!-- ActivityDayDetails Strings -->
+    <string name="day_details_preview_title">12/14 のアクティビティ</string>
+    <string name="day_details_preview_tasks">• タスク 1\n• タスク 2\n• タスク 3</string>
+
+    <!-- calendar_academic_images Strings -->
+    <string name="HeadTittleCalendarAc">アカデミックカレンダー</string>
+    <string name="textView">画像をタップして拡大</string>
+
+    <!-- About Strings -->
+    <string name="about_app_name">Erro Task</string>
+    <string name="about_version">バージョン 1.0</string>
+    <string name="about_programming_title">プログラミング</string>
+    <string name="about_programmers_names">Zuzk1.Gwx\nEn_Novi\nDazz.Imv</string>
+    <string name="about_icon_design_title">アイコンデザイン</string>
+    <string name="about_icon_designer_name">Paus.Treb</string>
+    <string name="about_collaborator_title">協力者</string>
+    <string name="about_collaborator_name">Gemini</string>
+    <string name="about_logo_description">Erro Task アプリケーションのロゴ</string>
+</resources>

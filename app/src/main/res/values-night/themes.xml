@@ -1,3 +1,11 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomWeekDayText" parent="TextAppearance.AppCompat.Caption">
+        <!-- Ahora el texto será claro, usando el color de texto principal para modo oscuro -->
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
 </resources>
