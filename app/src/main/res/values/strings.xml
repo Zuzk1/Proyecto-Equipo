@@ -42,6 +42,7 @@
     <string name="navigation_drawer_close" translatable="false">Cerrar menú de navegación</string>
     <string name="nav_opcion1" translatable="false">Añadir Actividades</string>
     <string name="opcion2Temporal" translatable="false">Ver Actividades</string>
+    <string name="nav_opcion3" translatable="false">Ver Grupos</string>
     <string name="TittleLinear"> Erro Task </string>
     <string name="OtrasOpcionesTemporal2" translatable="false">Otras Opciones</string>
     <string name="configuraci_n" translatable="false">Calendario Academico</string>
@@ -92,11 +93,6 @@
     <string name="about_collaborator_title" translatable="false">Colaborador</string>
     <string name="about_collaborator_name" translatable="false">Gemini</string>
     <string name="about_logo_description" translatable="false">Logo de la aplicación Erro Task</string>
-
-
-
-
-
 
 
 </resources>

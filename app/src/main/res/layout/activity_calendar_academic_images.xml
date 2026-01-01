@@ -6,17 +6,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="@color/background_color">
 
-    <ImageView
-        android:id="@+id/calendario_no_escolarizada"
-        android:layout_width="333dp"
-        android:layout_height="310dp"
-        android:layout_margin="16dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendario_escolarizada" />
-
+    <!-- BARRA DE TÍTULO SUPERIOR -->
     <TextView
         android:id="@+id/HeadTittleCalendarAc"
         android:layout_width="0dp"
@@ -32,6 +22,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- BOTÓN DE FLECHA ATRÁS -->
+    <ImageButton
+        android:id="@+id/btnBackCalendar"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Volver"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/HeadTittleCalendarAc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/HeadTittleCalendarAc" />
+
     <ImageView
         android:id="@+id/calendario_escolarizada"
         android:layout_width="333dp"
@@ -41,6 +44,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HeadTittleCalendarAc" />
+
+    <ImageView
+        android:id="@+id/calendario_no_escolarizada"
+        android:layout_width="333dp"
+        android:layout_height="310dp"
+        android:layout_margin="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendario_escolarizada" />
 
     <TextView
         android:id="@+id/textView"

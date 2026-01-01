@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +22,14 @@ public class calendar_academic_images extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Usa el nombre correcto de tu layout principal
         setContentView(R.layout.activity_calendar_academic_images);
-
+/// ///////////////////////////////////////////
+        // --- LÓGICA PARA LA FLECHA DE VOLVER ---
+        ImageButton btnBack = findViewById(R.id.btnBackCalendar);
+        btnBack.setOnClickListener(v -> {
+            // Finaliza esta actividad para regresar a la anterior (MainActivity2)
+            finish();
+        });
+/////////////////////////////////////
         // Encontramos las imágenes por su ID
         ImageView imagenEscolarizada = findViewById(R.id.calendario_escolarizada);
         ImageView imagenNoEscolarizada = findViewById(R.id.calendario_no_escolarizada);

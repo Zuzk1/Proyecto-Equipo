@@ -9,8 +9,11 @@
         android:id="@+id/nav_opcion2"
 
     android:title="@string/opcion2Temporal" />
-</group>
+    <item
+        android:id="@id/nav_opcion3"
 
+        android:title="@string/nav_opcion3"/>
+</group>
 <!-- Aparte -->
 <item android:title="@string/OtrasOpcionesTemporal2">
     <menu>
