@@ -10,10 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // Repositorio para la librería del calendario
+        // Repositorio JitPack para la librería del calendario
         maven { url = uri("https://jitpack.io") }
     }
 }
 rootProject.name = "ProyectoAula"
 include(":app")
-

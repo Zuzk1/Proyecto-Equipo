@@ -24,18 +24,27 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
     compileOptions {
+        // Compatibilidad total con Java 8 para evitar errores de bytecode
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         viewBinding = true
     }
+
     packagingOptions {
+        // Exclusiones críticas para evitar conflictos de licencias en el APK
         resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        resources.excludes.add("META-INF/DEPENDENCIES")
+        resources.excludes.add("META-INF/LICENSE*")
+        resources.excludes.add("META-INF/NOTICE*")
     }
 }
 
@@ -63,7 +72,6 @@ dependencies {
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
-    // Opcional, pero muy recomendado para no congelar la app
     implementation("androidx.room:room-ktx:$room_version")
 
     // ----- LÍNEAS AÑADIDAS PARA GLIDE -----
