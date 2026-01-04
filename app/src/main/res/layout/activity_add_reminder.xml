@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -9,17 +8,36 @@
     android:padding="24dp"
     tools:context=".AddReminderActivity">
 
+    <!-- BOTÓN FLECHA ATRÁS (Añadido) -->
+
+    <ImageButton
+        android:id="@+id/btnBackAddReminder"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="-6dp"
+        android:layout_marginTop="-6dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:tint="@color/primary_color" />
+
     <TextView
         android:id="@+id/TittleNewAct"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="370dp"
+        android:layout_height="67dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/biz_udpmincho"
         android:gravity="center"
         android:text="@string/TittleNewAct"
         android:textColor="@color/text_color"
-        android:textSize="38sp"
+        android:textSize="42sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -148,4 +166,3 @@
         app:layout_constraintTop_toBottomOf="@+id/NotificationSwitch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

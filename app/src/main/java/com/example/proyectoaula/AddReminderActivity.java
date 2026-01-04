@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.proyectoaula.databinding.ActivityAddReminderBinding;
@@ -45,6 +46,12 @@ public class AddReminderActivity extends AppCompatActivity {
         // Se infla la vista usando el binding que declaramos arriba
         binding = ActivityAddReminderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        ImageButton btnBack = findViewById(R.id.btnBackAddReminder);
+        btnBack.setOnClickListener(v -> {
+            // Finaliza esta actividad para regresar a la anterior (MainActivity2)
+            finish();
+        });
 
         // Se obtiene la base de datos para poder usarla
         AppDatabase db = AppDatabase.getDatabase(this);
