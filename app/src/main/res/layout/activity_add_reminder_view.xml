@@ -23,6 +23,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- BOTÓN DE FLECHA ATRÁS (Añadido) -->
+    <ImageButton
+        android:id="@+id/btnBackViewReminders"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/headtittle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/headtittle" />
+
     <!-- RecyclerView para mostrar la lista de recordatorios -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewReminders"
@@ -50,4 +62,3 @@
         app:layout_constraintTop_toBottomOf="@+id/headtittle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

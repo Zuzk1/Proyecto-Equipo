@@ -60,6 +60,7 @@ dependencies {
     implementation("androidx.activity:activity:1.8.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("androidx.fragment:fragment:1.8.9")
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
 
     // Dependencias de prueba
     testImplementation("junit:junit:4.13.2")

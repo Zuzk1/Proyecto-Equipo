@@ -3,25 +3,31 @@
 <group android:checkableBehavior="single">
     <item
         android:id="@+id/nav_opcion1"
+        android:fontFamily="@font/biz_udpmincho"
 
     android:title="@string/nav_opcion1" />
     <item
         android:id="@+id/nav_opcion2"
+        android:fontFamily="@font/biz_udpmincho"
 
     android:title="@string/opcion2Temporal" />
     <item
         android:id="@id/nav_opcion3"
+        android:fontFamily="@font/biz_udpmincho"
 
         android:title="@string/nav_opcion3"/>
 </group>
 <!-- Aparte -->
 <item android:title="@string/OtrasOpcionesTemporal2">
+
     <menu>
         <item
             android:id="@+id/nav_settings"
+            android:fontFamily="@font/biz_udpmincho"
             android:title="@string/configuraci_n" />
         <item
             android:id="@+id/nav_about"
+            android:fontFamily="@font/biz_udpmincho"
             android:title="@string/acerca_de" />
     </menu>
 </item>

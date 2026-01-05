@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Erro Task</string>
 
-    //Main1Activity
-    <string name="BarraProgreso" translatable="false">Cargando</string>
+    //Main1Activity<string name="BarraProgreso" translatable="false">Cargando</string>
     <string name="ProgresoTxt" translatable="false">Iniciando</string>
 
     //Main2Activity Apartado del Menu de Opciones cuando seleccionas un dia en el calendario
@@ -13,8 +12,6 @@
     <string name="ActPendientesGeneral" translatable="false">Sin Actividades Pendientes</string>
     <string name="gracias_por_permitir_las_notificaciones_Main2" translatable="false">Gracias por permitir las notificaciones.</string>
     <string name="no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2" translatable="false">No podremos mostrarte recordatorios si no permites las notificaciones.</string>
-    <string name="abriendo_ajustes_Main2" translatable="false">Redireccionando a la Web…</string>
-    <string name="tarea_guardada_con_exito_Main2" translatable="false">Tarea guardada con exito.</string>
     <string name="permiso_adicional_xiaomi_Main2" translatable="false">Permiso Adicional (Usuarios Xiaomi)</string>
     <string name="inicio_auto_Main2" translatable="false">Para asegurar que las notificaciones funcionen siempre, por favor, activa el \'Inicio Automático\' para esta app.</string>
     <string name="ir_a_ajustes_Main2" translatable="false">Ir a Ajustes</string>
@@ -33,7 +30,7 @@
     <string name="ir_a_los_ajustes_AddRemAct" translatable="false">Ir a los Ajustes</string>
     <string name="cancelar_AddRemAct" translatable="false">Cancelar</string>
     <string name="recordatorio_AddRemAct" translatable="false">Recordatorio</string>
-    <string name="recordatorio_programado_con_exito_AddRemAct" translatable="false">Actividad Guardada con exito :P</string>
+    <string name="tarea_guardada_con_exito_Main2" translatable="false">Actividad Guardada con exito :P</string>
     <string name="add_reminder_select_date" translatable="false">Seleccionar fecha</string>
     <string name="add_reminder_select_time" translatable="false">Seleccionar hora</string>
 
@@ -42,6 +39,7 @@
     <string name="navigation_drawer_close" translatable="false">Cerrar menú de navegación</string>
     <string name="nav_opcion1" translatable="false">Añadir Actividades</string>
     <string name="opcion2Temporal" translatable="false">Ver Actividades</string>
+    <string name="nav_opcion3" translatable="false">Ver Grupos</string>
     <string name="TittleLinear"> Erro Task </string>
     <string name="OtrasOpcionesTemporal2" translatable="false">Otras Opciones</string>
     <string name="configuraci_n" translatable="false">Calendario Academico</string>
@@ -63,8 +61,8 @@
     //AddReminderMain Strings
     <string name="LasNotificacionsEstanActivadasReminder" translatable="false">Las notificaciones están activadas</string>
     <string name="LasNotificacionesEstanDesactivadasReminder" translatable="false">Las notificaciones están desactivadas</string>
-    <string name="TareaReminder" translatable="false">Tarea \'</string>
-    <string name="GuardadaReminder" translatable="false">\' guardada.</string>
+    <string name="TareaReminder" translatable="false">Tarea \</string>
+    <string name="GuardadaReminder" translatable="false">\ guardada.</string>
     <string name="PVSeleccionaUnaHoraReminder" translatable="false">Por favor, selecciona una hora para la notificación</string>
     <string name="TituloNoVacioReminder" translatable="false">El título no puede estar vacío</string>
 
@@ -84,7 +82,7 @@
 
     //Acerca de Strings
     <string name="about_app_name">Erro Task</string>
-    <string name="about_version" translatable="false">Versión 1.0</string>
+    <string name="about_version" translatable="false">Versión 1.5</string>
     <string name="about_programming_title" translatable="false">Programación</string>
     <string name="about_programmers_names" translatable="false">Zuzk1.Gwx\nEn_Novi\nDazz.Imv</string>
     <string name="about_icon_design_title" translatable="false">Diseño de Iconos</string>
@@ -92,11 +90,5 @@
     <string name="about_collaborator_title" translatable="false">Colaborador</string>
     <string name="about_collaborator_name" translatable="false">Gemini</string>
     <string name="about_logo_description" translatable="false">Logo de la aplicación Erro Task</string>
-
-
-
-
-
-
 
 </resources>

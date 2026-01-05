@@ -14,5 +14,7 @@
     <color name="surface_parchment">#FFF9F5ED</color>
     <color name="surface_highlight_almond">#FFF5EFE6</color>
     <color name="border_subtle_beige">#EFEBE9</color>
+    <color name="background_color_things">#FFF5E6D3</color> <!-- Café Durazno (Fondo) -->
+    <color name="peach_accent">#FFE0B49E</color>      <!-- Durazno Oscuro (AcentoS) -->
 
 </resources>

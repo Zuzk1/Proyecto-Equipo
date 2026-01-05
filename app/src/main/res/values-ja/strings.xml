@@ -43,6 +43,7 @@
     <string name="navigation_drawer_close">ナビゲーションメニューを閉じる</string>
     <string name="nav_opcion1">アクティビティを追加</string>
     <string name="opcion2Temporal">アクティビティを表示</string>
+    <string name="nav_opcion3">グループを表示</string>
     <string name="TittleLinear"> Erro Task </string>
     <string name="OtrasOpcionesTemporal2">その他のオプション</string>
     <string name="configuraci_n">アカデミックカレンダー</string>
@@ -83,7 +84,7 @@
 
     <!-- About Strings -->
     <string name="about_app_name">Erro Task</string>
-    <string name="about_version">バージョン 1.0</string>
+    <string name="about_version">バージョン 1.5</string>
     <string name="about_programming_title">プログラミング</string>
     <string name="about_programmers_names">Zuzk1.Gwx\nEn_Novi\nDazz.Imv</string>
     <string name="about_icon_design_title">アイコンデザイン</string>

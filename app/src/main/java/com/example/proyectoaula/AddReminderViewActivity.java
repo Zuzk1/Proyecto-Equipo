@@ -3,6 +3,7 @@ package com.example.proyectoaula;
 // Se importan las clases necesarias de Android
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +27,12 @@ public class AddReminderViewActivity extends AppCompatActivity implements Remind
         super.onCreate(savedInstanceState);
         // Se conecta esta clase con su archivo de diseño XML
         setContentView(R.layout.activity_add_reminder_view);
+
+        ImageButton btnBack = findViewById(R.id.btnBackViewReminders);
+        btnBack.setOnClickListener(v -> {
+            // Finaliza esta actividad para regresar a la anterior (MainActivity2)
+            finish();
+        });
 
         // Se buscan los elementos de la vista por su ID para poder usarlos
         recyclerView = findViewById(R.id.recyclerViewReminders);

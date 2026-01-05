@@ -248,8 +248,5 @@ public class AddReminderActivity extends AppCompatActivity {
 
         // Se programa la alarma para que se dispare exactamente a la hora, incluso si el celular está dormido
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
-
-        // Se le avisa al usuario que el recordatorio ya quedó programado
-        Toast.makeText(this, R.string.recordatorio_programado_con_exito_AddRemAct, Toast.LENGTH_LONG).show();
     }
 }

@@ -14,7 +14,6 @@
     <string name="gracias_por_permitir_las_notificaciones_Main2" translatable="false">Gracias por permitir las notificaciones.</string>
     <string name="no_podremos_mostrarte_recordatorios_si_no_permites_las_notificaciones_Main2" translatable="false">No podremos mostrarte recordatorios si no permites las notificaciones.</string>
     <string name="abriendo_ajustes_Main2" translatable="false">Redireccionando a la Web…</string>
-    <string name="tarea_guardada_con_exito_Main2" translatable="false">Tarea guardada con exito.</string>
     <string name="permiso_adicional_xiaomi_Main2" translatable="false">Permiso Adicional (Usuarios Xiaomi)</string>
     <string name="inicio_auto_Main2" translatable="false">Para asegurar que las notificaciones funcionen siempre, por favor, activa el \'Inicio Automático\' para esta app.</string>
     <string name="ir_a_ajustes_Main2" translatable="false">Ir a Ajustes</string>
@@ -31,9 +30,9 @@
     <string name="permiso_necesario_AddRemAct" translatable="false">Permiso Necesario</string>
     <string name="permiso_especial_AddRemAct" translatable="false">Para que los recordatorios suenen a la hora exacta, necesitamos un permiso especial. Por favor, ayudanos activandolo :).</string>
     <string name="ir_a_los_ajustes_AddRemAct" translatable="false">Ir a los Ajustes</string>
+    <string name="tarea_guardada_con_exito_Main2" translatable="false">Tarea guardada con exito :)</string>
     <string name="cancelar_AddRemAct" translatable="false">Cancelar</string>
     <string name="recordatorio_AddRemAct" translatable="false">Recordatorio</string>
-    <string name="recordatorio_programado_con_exito_AddRemAct" translatable="false">Actividad Guardada con exito :P</string>
     <string name="add_reminder_select_date" translatable="false">Seleccionar fecha</string>
     <string name="add_reminder_select_time" translatable="false">Seleccionar hora</string>
 
@@ -85,7 +84,7 @@
 
     //Acerca de Strings
     <string name="about_app_name">Erro Task</string>
-    <string name="about_version" translatable="false">Versión 1.0</string>
+    <string name="about_version" translatable="false">Versión 1.5</string>
     <string name="about_programming_title" translatable="false">Programación</string>
     <string name="about_programmers_names" translatable="false">Zuzk1.Gwx\nEn_Novi\nDazz.Imv</string>
     <string name="about_icon_design_title" translatable="false">Diseño de Iconos</string>

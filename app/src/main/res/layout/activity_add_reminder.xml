@@ -1,168 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    android:padding="24dp"
     tools:context=".AddReminderActivity">
 
-    <!-- BOTÓN FLECHA ATRÁS (Añadido) -->
-
-    <ImageButton
-        android:id="@+id/btnBackAddReminder"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="-6dp"
-        android:layout_marginTop="-6dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_arrow_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:tint="@color/primary_color" />
-
+    <!-- BARRA DE TÍTULO SUPERIOR (ENCABEZADO UNIFICADO) -->
     <TextView
         android:id="@+id/TittleNewAct"
-        android:layout_width="370dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_color"
         android:fontFamily="@font/biz_udpmincho"
         android:gravity="center"
+        android:padding="16dp"
         android:text="@string/TittleNewAct"
-        android:textColor="@color/text_color"
-        android:textSize="42sp"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textColor="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ActNameLayout"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+    <!-- BOTÓN DE FLECHA ATRÁS (INTEGRADO EN EL ENCABEZADO) -->
+    <ImageButton
+        android:id="@+id/btnBackAddReminder"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/TittleNewAct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/TittleNewAct" />
+
+    <!-- CONTENEDOR PARA EL FORMULARIO -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="@string/ActNameEdit"
-        android:textColorHint="@color/hint_color"
-        app:boxStrokeColor="@color/primary_color"
-        app:hintTextColor="@color/primary_color"
+        android:layout_height="0dp"
+        android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TittleNewAct">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ActNameEdit"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:inputType="textCapSentences"
-            android:textColor="@color/text_color"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ActNameLayout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="@string/ActNameEdit"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_color"
+                app:hintTextColor="@color/primary_color"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ActNoteLayout"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="@string/ActNoteEdit"
-        android:textColorHint="@color/hint_color"
-        app:boxStrokeColor="@color/primary_color"
-        app:hintTextColor="@color/primary_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ActNameLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ActNameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:inputType="textCapSentences"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ActNoteEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:gravity="top|start"
-            android:inputType="textMultiLine"
-            android:lines="3"
-            android:textColor="@color/text_color" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ActNoteLayout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/ActNoteEdit"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_color"
+                app:hintTextColor="@color/primary_color"
+                app:layout_constraintTop_toBottomOf="@+id/ActNameLayout">
 
-    <TextView
-        android:id="@+id/fecha_save"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:fontFamily="serif"
-        android:gravity="left|center_vertical"
-        android:padding="16dp"
-        android:text="@string/add_reminder_select_date"
-        android:textColor="@color/primary_color"
-        android:textSize="18sp"
-        app:drawableStartCompat="@drawable/icon_date"
-        app:drawableTint="@color/primary_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ActNoteLayout"
-        tools:ignore="RtlHardcoded" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ActNoteEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:textColor="@color/text_color" />
 
-    <TextView
-        android:id="@+id/TimeReminder"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:drawablePadding="12dp"
-        android:focusable="true"
-        android:fontFamily="serif"
-        android:gravity="left|center_vertical"
-        android:padding="16dp"
-        android:text="@string/add_reminder_select_time"
-        android:textColor="@color/primary_color"
-        android:textSize="18sp"
-        app:drawableStartCompat="@drawable/ic_time"
-        app:drawableTint="@color/primary_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fecha_save"
-        tools:ignore="RtlHardcoded" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/NotificationSwitch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:checked="true"
-        android:fontFamily="serif"
-        android:text="@string/NotificationSwitch"
-        android:textColor="@color/text_color"
-        android:textColorLink="@color/text_color"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TimeReminder" />
+            <!-- SELECCIÓN DE FECHA -->
+            <TextView
+                android:id="@+id/fecha_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="serif"
+                android:gravity="left|center_vertical"
+                android:padding="16dp"
+                android:text="@string/add_reminder_select_date"
+                android:textColor="@color/primary_color"
+                android:textSize="18sp"
+                app:drawableStartCompat="@drawable/icon_date"
+                app:drawableTint="@color/primary_color"
+                app:layout_constraintTop_toBottomOf="@+id/ActNoteLayout"
+                tools:ignore="RtlHardcoded" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/ButtonSave"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/primary_color"
-        android:fontFamily="serif"
-        android:padding="14dp"
-        android:text="@string/ButtonSave"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NotificationSwitch" />
+            <!-- SELECCIÓN DE HORA -->
+            <TextView
+                android:id="@+id/TimeReminder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="12dp"
+                android:focusable="true"
+                android:fontFamily="serif"
+                android:gravity="left|center_vertical"
+                android:padding="16dp"
+                android:text="@string/add_reminder_select_time"
+                android:textColor="@color/primary_color"
+                android:textSize="18sp"
+                app:drawableStartCompat="@drawable/ic_time"
+                app:drawableTint="@color/primary_color"
+                app:layout_constraintTop_toBottomOf="@+id/fecha_save"
+                tools:ignore="RtlHardcoded" />
+
+            <!-- EL SWITCH SIN MORADO (CORREGIDO) -->
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/NotificationSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:fontFamily="serif"
+                android:text="@string/NotificationSwitch"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                app:thumbTint="@color/primary_color"
+                app:trackTint="@color/peach_accent"
+                app:layout_constraintTop_toBottomOf="@+id/TimeReminder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- BOTÓN GUARDAR -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ButtonSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/primary_color"
+                android:fontFamily="serif"
+                android:padding="14dp"
+                android:text="@string/ButtonSave"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/NotificationSwitch" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

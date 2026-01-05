@@ -43,6 +43,7 @@
     <string name="navigation_drawer_close">关闭导航菜单</string>
     <string name="nav_opcion1">添加活动</string>
     <string name="opcion2Temporal">查看活动</string>
+    <string name="nav_opcion3">查看群组</string>
     <string name="TittleLinear"> Erro Task </string>
     <string name="OtrasOpcionesTemporal2">其他选项</string>
     <string name="configuraci_n">校历</string>
@@ -83,7 +84,7 @@
 
     <!-- About Strings -->
     <string name="about_app_name">Erro Task</string>
-    <string name="about_version">版本 1.0</string>
+    <string name="about_version">版本 1.5</string>
     <string name="about_programming_title">编程</string>
     <string name="about_programmers_names">Zuzk1.Gwx\nEn_Novi\nDazz.Imv</string>
     <string name="about_icon_design_title">图标设计</string>

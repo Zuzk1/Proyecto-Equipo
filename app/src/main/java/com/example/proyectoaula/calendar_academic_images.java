@@ -8,86 +8,67 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
-// Importar Glide
+// Importar Glide y PhotoView
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 
 public class calendar_academic_images extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Usa el nombre correcto de tu layout principal
         setContentView(R.layout.activity_calendar_academic_images);
-/// ///////////////////////////////////////////
+
         // --- LÓGICA PARA LA FLECHA DE VOLVER ---
         ImageButton btnBack = findViewById(R.id.btnBackCalendar);
         btnBack.setOnClickListener(v -> {
-            // Finaliza esta actividad para regresar a la anterior (MainActivity2)
             finish();
         });
-/////////////////////////////////////
+
         // Encontramos las imágenes por su ID
         ImageView imagenEscolarizada = findViewById(R.id.calendario_escolarizada);
         ImageView imagenNoEscolarizada = findViewById(R.id.calendario_no_escolarizada);
 
-        // Usar Glide para cargar las imágenes de forma eficiente
-        Glide.with(this)
-                .load(R.drawable.calendario_escolarizada)
-                .into(imagenEscolarizada);
+        // Usar Glide para cargar las imágenes
+        Glide.with(this).load(R.drawable.calendario_escolarizada).into(imagenEscolarizada);
+        Glide.with(this).load(R.drawable.calendario_no_escolarizada).into(imagenNoEscolarizada);
 
-        Glide.with(this)
-                .load(R.drawable.calendario_no_escolarizada)
-                .into(imagenNoEscolarizada);
-
-
-        // Asignamos el evento de clic a la primera imagen
-        imagenEscolarizada.setOnClickListener(v -> {
-            showImageInDialog(R.drawable.calendario_escolarizada);
-        });
-
-        // Asignamos el evento de clic a la segunda imagen
-        imagenNoEscolarizada.setOnClickListener(v -> {
-            showImageInDialog(R.drawable.calendario_no_escolarizada);
-        });
+        // Eventos de clic
+        imagenEscolarizada.setOnClickListener(v -> showImageInDialog(R.drawable.calendario_escolarizada));
+        imagenNoEscolarizada.setOnClickListener(v -> showImageInDialog(R.drawable.calendario_no_escolarizada));
     }
 
-    // ----- FUNCIÓN CORREGIDA PARA EL FONDO SEMI-TRANSPARENTE -----
     private void showImageInDialog(int imageResId) {
-        // 1. Crea un diálogo normal.
         final Dialog dialog = new Dialog(this);
-        // 2. MUY IMPORTANTE: Le quitamos la barra de título que viene por defecto.
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        // 3. "Infla" (carga) tu layout XML del diálogo.
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_fullscreen_image, null);
+        PhotoView photoView = dialogView.findViewById(R.id.dialog_imageview);
 
-        // 4. Encuentra el ImageView DENTRO de la vista del diálogo.
-        ImageView fullscreenImageView = dialogView.findViewById(R.id.dialog_imageview);
-
-        // 5. Usa Glide para cargar la imagen.
-        Glide.with(this)
-                .load(imageResId)
-                .into(fullscreenImageView);
-
-        // 6. Establece la vista como el contenido del diálogo.
+        Glide.with(this).load(imageResId).into(photoView);
         dialog.setContentView(dialogView);
 
-        // 7. Configura la ventana del diálogo para el efecto deseado.
         if (dialog.getWindow() != null) {
-            // HACE QUE EL FONDO SEA TRANSPARENTE
+            // Establece el fondo de la ventana como transparente para que mande el color de tu XML
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            // HACE QUE EL DIÁLOGO OCUPE TODA LA PANTALLA
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+            // QUITA EL COLOR NEGRO DEL SISTEMA: Esto permite ver la transparencia real del XML
+            dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         }
 
-        // 8. Hacemos que se cierre al tocar la imagen o el fondo.
-        dialogView.setOnClickListener(v -> dialog.dismiss());
+        // 1. CERRAR AL TOCAR LA IMAGEN (Tap rápido para no chocar con el zoom)
+        photoView.setOnPhotoTapListener((view, x, y) -> dialog.dismiss());
 
-        // 9. Muestra el diálogo.
+        // 2. CERRAR AL TOCAR EL FONDO (Cualquier parte que no sea la imagen)
+        dialogView.setOnClickListener(v -> dialog.dismiss());
+        photoView.setOnOutsidePhotoTapListener(view -> dialog.dismiss());
+
         dialog.show();
     }
 }

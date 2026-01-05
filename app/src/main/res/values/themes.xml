@@ -1,32 +1,52 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Tema base de la aplicación -->
-    <!-- CAMBIO: Se han añadido los colores primarios para dar estilo a la Toolbar y otros componentes -->
     <style name="Base.Theme.ProyectoAula" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Color de la barra de estado (la de arriba del todo con la hora, batería, etc.) -->
-        <!-- CAMBIO: Usamos un marrón más oscuro para la barra de estado para mayor contraste -->
+        <!-- Color de la barra de estado -->
         <item name="android:statusBarColor">@color/primary_color</item>
 
-        <!-- Color primario de la marca (usado para el fondo de la Toolbar) -->
+        <!-- CONFIGURACIÓN PARA ELIMINAR EL MORADO (Sobreescribimos la paleta de Material 3) -->
         <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorOnPrimary">@color/white</item>
 
-        <!-- Color del texto y los iconos sobre el color primario (ej. el título en la Toolbar) -->
-        <item name="colorOnPrimary">@color/text_on_dark_primary</item>
+        <!-- Estos tres quitan el morado de los fondos de botones y switches -->
+        <item name="colorSecondary">@color/hint_color</item>
+        <item name="colorTertiary">@color/peach_accent</item>
+        <item name="colorContainer">@color/background_color_things</item>
 
-        <!-- Color de fondo general para las ventanas de la app -->
+        <!-- Color de acento para componentes activos -->
+        <item name="colorAccent">@color/primary_color</item>
+        <item name="android:colorAccent">@color/primary_color</item>
+        <item name="android:colorControlActivated">@color/primary_color</item>
+
+        <!-- COLOR DE FONDO (CAFÉ DURAZNO) -->
         <item name="android:windowBackground">@color/background_color</item>
+
+        <!-- TEMA PERSONALIZADO PARA EL RELOJ (Sin el error anterior) -->
+        <item name="materialTimePickerTheme">@style/CustomTimePickerTheme</item>
     </style>
 
     <style name="Theme.ProyectoAula" parent="Base.Theme.ProyectoAula" />
 
-    <!-- SPLASH SCREEN (Sin cambios) -->
+    <!-- ESTILO PARA EL RELOJ (Corregido para evitar el error de carga) -->
+    <style name="CustomTimePickerTheme" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/background_color</item>
+        <item name="colorOnSurface">@color/text_color</item>
+        <!-- Colores para los números y el círculo selector -->
+        <item name="colorSecondaryContainer">@color/peach_accent</item>
+        <item name="colorOnSecondaryContainer">@color/text_color</item>
+    </style>
+
+    <!-- SPLASH SCREEN -->
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/background_color</item>
         <item name="windowSplashScreenAnimatedIcon">@mipmap/icono</item>
         <item name="postSplashScreenTheme">@style/Theme.ProyectoAula</item>
     </style>
 
-    <!-- Estilo General de la App (Sin cambios) -->
+    <!-- Estilo General de Botones -->
     <style name="BotonMarron" parent="Widget.Material3.Button">
         <item name="android:backgroundTint">@color/primary_color</item>
         <item name="android:textColor">@color/white</item>
@@ -34,11 +54,7 @@
         <item name="android:padding">14dp</item>
     </style>
 
-    <!-- Estilo para la Toolbar (Ahora usará los colores del tema principal, puedes dejarlo o quitarlo) -->
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-    </style>
-
-    <!-- Estilos para el Calendario (Sin cambios) -->
+    <!-- Estilos para el Calendario -->
     <style name="CalendarDateText" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/text_color</item>
     </style>
@@ -48,14 +64,16 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="CalendarWeekDayText" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">@color/hint_color</item>
-    </style>
-    <!-- Estilo para el texto de los días de la semana en el calendario (Sin cambios) -->
     <style name="CustomWeekDayText" parent="TextAppearance.AppCompat.Caption">
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- ESTILO AÑADIDO PARA EVITAR EL ERROR EN LA TOOLBAR -->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
 </resources>
