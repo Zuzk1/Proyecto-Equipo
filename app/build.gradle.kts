@@ -9,7 +9,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.android.ipn.erro"
+        applicationId = "com.example.proyectoaula"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

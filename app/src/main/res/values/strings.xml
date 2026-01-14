@@ -35,6 +35,7 @@
     <string name="recordatorio_AddRemAct" translatable="false">Recordatorio</string>
     <string name="add_reminder_select_date" translatable="false">Seleccionar fecha</string>
     <string name="add_reminder_select_time" translatable="false">Seleccionar hora</string>
+    <string name="advertencia_AddReminder">Puede que la primera vez que se añada una actividad esta aparezca dos veces, no causa problemas técnicos pero sí estéticos.</string>
 
     //Barra Lateral
     <string name="navigation_drawer_open" translatable="false">Abrir menú de navegación</string>

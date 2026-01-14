@@ -28,7 +28,7 @@
         android:layout_width="48dp"
         android:layout_height="0dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Volver"
+        android:contentDescription="back"
         android:src="@drawable/ic_arrow_back"
         app:tint="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/HeadTittleCalendarAc"

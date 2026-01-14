@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.TextView; // <--- SE AÑADE ESTA IMPORTACIÓN
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.proyectoaula.databinding.ActivityAddReminderBinding;
@@ -16,6 +17,7 @@ import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.SharedPreferences; // <--- SE AÑADE ESTA IMPORTACIÓN
 import android.os.Build;
 import android.provider.Settings;
 import android.widget.DatePicker;
@@ -39,6 +41,12 @@ public class AddReminderActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> requestPermissionLauncher;
     // Se declara el DAO para poder hablar con la base de datos de recordatorios
     private ReminderDao reminderDao;
+
+    // ========= INICIO DE LA MODIFICACIÓN =========
+    // Se definen claves únicas para SharedPreferences, para no confundirlas con otras
+    public static final String PREFS_NAME = "AppPrefs";
+    public static final String KEY_FIRST_RUN_ADD_REMINDER = "isFirstRunAddReminder";
+    //========= FIN DE LA MODIFICACIÓN =========
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +72,11 @@ public class AddReminderActivity extends AppCompatActivity {
         setupTimePicker();
         setupSaveButton();
 
+        // ========= INICIO DE LA MODIFICACIÓN =========
+        // Se llama a la función que comprueba si es la primera vez que se abre esta pantalla
+        checkFirstRun();
+        // ========= FIN DE LA MODIFICACIÓN =========
+
         // Se pone a escuchar el switch de notificaciones por si el usuario lo activa o desactiva
         binding.NotificationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             // Se habilita o deshabilita el campo de la hora según el estado del switch
@@ -73,6 +86,30 @@ public class AddReminderActivity extends AppCompatActivity {
             Toast.makeText(AddReminderActivity.this, messageResId, Toast.LENGTH_SHORT).show();
         });
     }
+
+    // ========= INICIO DE LA MODIFICACIÓN =========
+    // NUEVO MÉTODO: Comprueba si es la primera vez que se ejecuta esta Activity
+    private void checkFirstRun() {
+        // Se obtiene el archivo de preferencias de nuestra app
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        // Se lee el valor guardado. Si no existe, por defecto será 'true' (indicando que es la primera vez)
+        boolean isFirstRun = settings.getBoolean(KEY_FIRST_RUN_ADD_REMINDER, true);
+
+        // Si es la primera vez...
+        if (isFirstRun) {
+            // 1. Hacemos visible nuestro TextView de advertencia
+            binding.warningMessage.setVisibility(View.VISIBLE);
+
+            // 2. Guardamos el valor 'false' en las preferencias
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean(KEY_FIRST_RUN_ADD_REMINDER, false);
+            editor.apply(); // apply() guarda los cambios de forma asíncrona y eficiente
+        }
+        // Si no es la primera vez que se entra, no se hace nada. El TextView permanecerá
+        // con la visibilidad "gone" que se definió en el archivo XML.
+    }
+    // ========= FIN DE LA MODIFICACIÓN =========
 
     // Se prepara el sistema para recibir una respuesta cuando se piden permisos
     private void setupPermissionLauncher() {
