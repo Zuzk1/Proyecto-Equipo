@@ -64,7 +64,7 @@
         android:alpha="0.7"
         android:fontFamily="@font/biz_udpmincho"
         android:text="@string/textView"
-        android:textColor="@color/black"
+        android:textColor="@color/text_color"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/calendario_no_escolarizada"
         app:layout_constraintEnd_toEndOf="parent"

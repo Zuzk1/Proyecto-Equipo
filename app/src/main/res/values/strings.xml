@@ -26,9 +26,9 @@
     <string name="ActNoteEdit" translatable="false">Agregar Nota (Opcional)</string>
     <string name="NotificationSwitch" translatable="false">Activar Notificacion</string>
     <string name="ButtonSave" translatable="false">Guardar Actividad</string>
-    <string name="permiso_concedido_addRemAct" translatable="false">Permiso concedido. Intenta guardar nuevamente porfavor :V.</string>
+    <string name="permiso_concedido_addRemAct" translatable="false">Permiso concedido. Intenta guardar nuevamente porfavor :V</string>
     <string name="permiso_necesario_AddRemAct" translatable="false">Permiso Necesario</string>
-    <string name="permiso_especial_AddRemAct" translatable="false">Para que los recordatorios suenen a la hora exacta, necesitamos un permiso especial. Por favor, ayudanos activandolo :).</string>
+    <string name="permiso_especial_AddRemAct" translatable="false">Para que los recordatorios suenen a la hora exacta, necesitamos un permiso especial. Por favor, ayudanos activandolo :)</string>
     <string name="ir_a_los_ajustes_AddRemAct" translatable="false">Ir a los Ajustes</string>
     <string name="tarea_guardada_con_exito_Main2" translatable="false">Tarea guardada con exito :)</string>
     <string name="cancelar_AddRemAct" translatable="false">Cancelar</string>
