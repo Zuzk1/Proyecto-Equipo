@@ -3,6 +3,7 @@ package com.example.proyectoaula;
 // Se importan las clases necesarias para manejar notificaciones y recibir eventos del sistema
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent; // ¡NUEVA IMPORTACIÓN! Para manejar el toque en la notificación.
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -22,45 +23,66 @@ public class NotificationReceiver extends BroadcastReceiver {
         String title = intent.getStringExtra("EXTRA_TASK_TITLE");
         String note = intent.getStringExtra("EXTRA_TASK_NOTE");
 
+        // --- INICIO DE LA MEJORA SUGERIDA ---
+        // Se genera un ID único para la notificación y el PendingIntent.
+        // Usar System.currentTimeMillis() es una forma sencilla de asegurar que cada ID sea único.
+        // Esto previene que una nueva notificación sobreescriba el comportamiento de una antigua
+        // si el usuario aún no la ha tocado.
+        int uniqueId = (int) System.currentTimeMillis();
+        // --- FIN DE LA MEJORA SUGERIDA ---
+
         // Se obtiene el manejador de notificaciones del sistema para poder mostrar algo
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
+        // --- INICIO DEL CAMBIO IMPORTANTE ---
+
+        // 1. Crear un Intent para abrir la actividad de actividades guardadas.
+        //    ¡IMPORTANTE! Reemplaza 'SavedActivitiesActivity.class' con el nombre real de tu clase
+        //    que muestra la lista de actividades.
+        Intent notificationIntent = new Intent(context, com.example.proyectoaula.AddReminderViewActivity.class);
+
+        // 2. Opcional: Flags para controlar cómo se abre la actividad.
+        //    - FLAG_ACTIVITY_CLEAR_TOP: Si la actividad ya está abierta en la pila, limpia las que están encima y la trae al frente.
+        //    - FLAG_ACTIVITY_SINGLE_TOP: Si la actividad ya está en la cima, reutiliza esa instancia en lugar de crear una nueva.
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        // 3. Crear el PendingIntent. Esto le da permiso al sistema para abrir tu app.
+        //    - El requestCode ahora es único (usando 'uniqueId') para cada notificación.
+        //    - FLAG_UPDATE_CURRENT indica que si ya existe un PendingIntent con el mismo requestCode, se actualice con este nuevo Intent.
+        //    - FLAG_IMMUTABLE es requerido para mayor seguridad en versiones recientes de Android.
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, uniqueId, notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        // --- FIN DEL CAMBIO IMPORTANTE ---
+
         // Se revisa si la versión de Android es 8 (Oreo) o más nueva
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Si es una versión nueva, es obligatorio crear un "canal" para las notificaciones
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
-                    context.getString(R.string.recordatorios_de_actividades_NotiReci), // Este es el nombre que el usuario ve en los ajustes de la app
-                    NotificationManager.IMPORTANCE_HIGH // Se le pone importancia alta para que la notificación aparezca en grande
+                    context.getString(R.string.recordatorios_de_actividades_NotiReci),
+                    NotificationManager.IMPORTANCE_HIGH
             );
-            // Se le pone una descripción al canal que se ve en los ajustes
             channel.setDescription(context.getString(R.string.canal_actividades_pendientes_NotiReci));
-            // Se le dice al canal que debe permitir la vibración
             channel.enableVibration(true);
-            // Se le da un patrón de vibración para que se sienta chido
             channel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
-            // Se registra el canal con el sistema
             notificationManager.createNotificationChannel(channel);
         }
 
         // Se empieza a construir la notificación usando un 'Builder'
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                // Se le pone un ícono pequeño y simple, que es lo que pide Android para la barra de estado
                 .setSmallIcon(R.drawable.notification_icon)
-                // Se le pone el título que sacamos del intent
                 .setContentTitle(title)
-                // Se le pone el texto del cuerpo de la notificación
                 .setContentText(note)
-                // Se le da prioridad alta para que aparezca encima de otras cosas
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                // Se le dice que se cierre sola cuando el usuario la toque
                 .setAutoCancel(true)
-                // Se le pone un patrón de vibración para celulares con versiones viejas de Android
-                .setVibrate(new long[]{0, 1000, 500, 1000});
+                .setVibrate(new long[]{0, 1000, 500, 1000})
+                // --- ASOCIACIÓN DEL PENDINGINTENT ---
+                // ¡Aquí se le dice a la notificación qué hacer cuando el usuario la toque!
+                .setContentIntent(pendingIntent);
 
         // Se le dice al manejador de notificaciones que ya está lista y que la muestre
-        // Se usa un ID único basado en la hora para no reemplazar notificaciones anteriores
-        int notificationId = (int) System.currentTimeMillis();
-        notificationManager.notify(notificationId, builder.build());
+        // Se usa el mismo ID único para mostrar la notificación. Esto asegura que cada notificación
+        // se maneje de forma independiente.
+        notificationManager.notify(uniqueId, builder.build());
     }
 }

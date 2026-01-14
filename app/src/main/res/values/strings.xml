@@ -84,7 +84,7 @@
 
     //Acerca de Strings
     <string name="about_app_name">Erro Task</string>
-    <string name="about_version" translatable="false">Versión 1.5</string>
+    <string name="about_version" translatable="false">Versión 1.5.0</string>
     <string name="about_programming_title" translatable="false">Programación</string>
     <string name="about_programmers_names" translatable="false">Zuzk1.Gwx\nEn_Novi\nDazz.Imv</string>
     <string name="about_icon_design_title" translatable="false">Diseño de Iconos</string>
