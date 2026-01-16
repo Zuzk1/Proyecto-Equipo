@@ -14,9 +14,10 @@
     <color name="surface_parchment">#FFF9F5ED</color>
     <color name="surface_highlight_almond">#FFF5EFE6</color>
     <color name="border_subtle_beige">#EFEBE9</color>
-    <color name="background_color_things">#FFF5E6D3</color> <!-- Café Durazno (Fondo) -->
+    <color name="background_color_things">#F2EBE1</color> <!-- Blanco Fondo  -->
     <color name="peach_accent">#FFE0B49E</color>
     <color name="warning_background_color">#22FFB700</color> <!-- Amarillo muy transparente -->
     <color name="warning_text_color">#756200</color>      <!-- Durazno Oscuro (AcentoS) -->
+    <color name="special_text_day_calerndar">#332300</color> <!-- Cafe Raro -->
 
 </resources>

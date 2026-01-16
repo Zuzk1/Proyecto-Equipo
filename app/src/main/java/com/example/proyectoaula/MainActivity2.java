@@ -1,6 +1,6 @@
 package com.example.proyectoaula;
 
-// Importaciones (Añadí las que faltaban para el diálogo)
+// ... (Todas tus importaciones se quedan igual)
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -33,7 +33,6 @@ import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZoneId;
-
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -43,14 +42,12 @@ import java.util.Locale;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // Se eliminó la línea "final Dialog dialog = new Dialog(this);" de aquí
-
+    // ... (Todas tus declaraciones de variables se quedan igual)
     private DrawerLayout drawerLayout;
     private MaterialCalendarView calendarView;
     private ActivityResultLauncher<Intent> addReminderLauncher;
     private AppDatabase db;
     private ReminderDao reminderDao;
-
     private final ActivityResultLauncher<String> requestNotificationPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
@@ -76,15 +73,19 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         checkAndRequestAutoStartPermission();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadAndDecorateEvents();
-    }
+    // ... (El resto de los métodos como onResume, setupCalendar, etc., se quedan igual)
 
     private void setupToolbarAndNavigation() {
         Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+
+        // ======================= INICIO DE LA CORRECCIÓN =======================
+        // Le quitamos el título por defecto a la ActionBar para que no tape el nuestro.
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+        // ======================== FIN DE LA CORRECCIÓN =========================
+
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -94,6 +95,13 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         );
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+    }
+
+    // ... (El resto de tus métodos van aquí, sin cambios)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAndDecorateEvents();
     }
 
     private void setupCalendar() {
@@ -288,3 +296,4 @@ class EventDecorator implements DayViewDecorator {
         view.addSpan(new DotSpan(7, color));
     }
 }
+

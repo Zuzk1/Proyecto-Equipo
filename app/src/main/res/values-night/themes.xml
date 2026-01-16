@@ -1,11 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="CustomWeekDayText" parent="TextAppearance.AppCompat.Caption">
-        <!-- Ahora el texto será claro, usando el color de texto principal para modo oscuro -->
+    <!-- Tema base de la aplicación para MODO OSCURO -->    <style name="Base.Theme.ProyectoAula" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Colores principales para el tema oscuro -->
+    <item name="android:statusBarColor">@color/primary_color</item>
+    <item name="colorPrimary">@color/primary_color</item>
+    <item name="colorOnPrimary">@color/text_color</item>
+    <item name="colorSecondary">@color/hint_color</item>
+    <item name="colorTertiary">@color/peach_accent</item>
+    <item name="colorContainer">@color/background_color_things</item>
+    <item name="colorAccent">@color/primary_color</item>
+    <item name="android:colorAccent">@color/primary_color</item>
+    <item name="android:colorControlActivated">@color/primary_color</item>
+    <item name="android:windowBackground">@color/background_color</item>
+    <item name="materialTimePickerTheme">@style/CustomTimePickerTheme</item>
+</style>
+
+    <style name="Theme.ProyectoAula" parent="Base.Theme.ProyectoAula" />
+
+    <!-- ESTILO PARA EL RELOJ en MODO OSCURO -->
+    <style name="CustomTimePickerTheme" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorOnPrimary">@color/text_color</item>
+        <item name="colorSurface">@color/background_color</item>
+        <item name="colorOnSurface">@color/text_color</item>
+        <item name="colorSecondaryContainer">@color/peach_accent</item>
+        <item name="colorOnSecondaryContainer">@color/text_color</item>
+    </style>
+
+    <!-- SPLASH SCREEN en MODO OSCURO -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/background_color</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/icono</item>
+        <item name="postSplashScreenTheme">@style/Theme.ProyectoAula</item>
+    </style>
+
+    <!-- Estilo General de Botones en MODO OSCURO -->
+    <style name="BotonMarron" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">@color/primary_color</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:padding">14dp</item>
+    </style>
+
+    <!-- ======================= INICIO DE LA CORRECCIÓN ======================= -->
+    <!-- Estilos para el Calendario en MODO OSCURO (sincronizados con el tema de día) -->
+
+    <style name="CalendarDateText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/text_color</item> <!-- Color de noche -->
+        <item name="android:textFontWeight">250</item>       <!-- Atributo sincronizado -->
+        <item name="android:textStyle">bold</item>          <!-- Atributo sincronizado -->
+    </style>
+
+    <style name="CalendarHeaderText" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/text_color</item> <!-- Color de noche -->
+        <item name="android:textFontWeight">700</item>       <!-- Atributo sincronizado -->
+        <item name="android:textStyle">bold</item>          <!-- Atributo sincronizado -->
+    </style>
+
+    <style name="CustomWeekDayText" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">@color/hint_color</item> <!-- Color de noche -->
+        <item name="android:textStyle">normal</item>        <!-- Atributo sincronizado -->
+        <item name="android:textFontWeight">650</item>       <!-- Atributo sincronizado -->
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- ======================== FIN DE LA CORRECCIÓN ========================= -->
+
+    <!-- Este estilo es para los iconos de la Toolbar (menú hamburguesa) -->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
 </resources>

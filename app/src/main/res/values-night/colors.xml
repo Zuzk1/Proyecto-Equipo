@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- ============== Colores Modo Oscuro (Paleta Invertida) ============== -->
+    <!-- ============== Colores para el Tema Oscuro ============== -->
 
-    <!-- Colores base no cambian -->
+    <!-- Colores Invertidos Principales -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Fondo ahora es un marrón muy oscuro y cálido -->
-    <color name="background_color">#FF2D221E</color>
+    <!-- El fondo ahora es un marrón muy oscuro -->
+    <color name="background_color">#FF1E1A18</color>
 
-    <!-- Color primario puede ser un poco más brillante para resaltar -->
-    <color name="primary_color">#FF987368</color>
+    <!-- El color primario se hace un poco más claro para que resalte en el fondo oscuro -->
+    <color name="primary_color">#8A8A8A</color>
 
-    <!-- Color de texto principal ahora es un beige claro -->
-    <color name="text_color">#FFF1E8E5</color>
+    <!-- El texto principal ahora es un color hueso claro -->
+    <color name="text_color">#E8E8E8</color>
 
-    <!-- Color de hints ahora es un marrón más apagado -->
-    <color name="hint_color">#FFA4897E</color>
+    <!-- El texto de hint es un gris cálido más oscuro -->
+    <color name="hint_color">#A6A59D</color>
 
-    <!-- Color de evento puede ser más brillante para ser visible en fondo oscuro -->
-    <color name="event_day_color">#FFFF5252</color>
+    <!-- El rojo para eventos se hace más brillante para ser visible -->
+    <color name="event_day_color">#30FF00</color>
 
-    <!-- Estos colores ya estaban pensados para fondos oscuros, se pueden mantener o ajustar -->
+    <!-- Colores de Texto sobre Fondos Claros (en modo oscuro, estos se invierten) -->
     <color name="text_on_dark_primary">#FFFFFFFF</color>
     <color name="text_on_dark_secondary">#F5F5F5</color>
-    <color name="text_on_dark_hint">#D7CCC8</color>
+    <color name="text_on_dark_hint">#EBE9E1</color>
 
-    <!-- Superficies ahora son tonos más oscuros de marrón -->
-    <color name="surface_parchment">#FF3C2E29</color>
-    <color name="surface_highlight_almond">#FF463630</color>
-    <color name="border_subtle_beige">#FF4E403B</color>
+    <!-- Colores de Superficie Oscuros -->
+    <color name="surface_parchment">#FF2A2421</color> <!-- Superficie de "pergamino" oscuro -->
+    <color name="surface_highlight_almond">#FF362F2B</color> <!-- Destaque sutil oscuro -->
+    <color name="border_subtle_beige">#FF443A36</color> <!-- Borde visible pero tenue -->
+
+    <!-- El fondo de "cosas" (como tarjetas) es un marrón ligeramente más claro que el fondo principal -->
+    <color name="background_color_things">#FF2A2421</color>
+
+    <!-- El acento durazno se hace más brillante para resaltar -->
+    <color name="peach_accent">#DED6C5</color>
+
+    <!-- Colores de Advertencia adaptados para fondo oscuro -->
+    <color name="warning_background_color">#33FFD180</color> <!-- Amarillo/Naranja transparente -->
+    <color name="warning_text_color">#FFFFE082</color>      <!-- Amarillo pálido para el texto -->
 
 </resources>

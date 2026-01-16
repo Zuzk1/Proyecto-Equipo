@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.TextView; // <--- SE AÑADE ESTA IMPORTACIÓN
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.proyectoaula.databinding.ActivityAddReminderBinding;
@@ -17,7 +17,7 @@ import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.SharedPreferences; // <--- SE AÑADE ESTA IMPORTACIÓN
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.provider.Settings;
 import android.widget.DatePicker;
@@ -42,11 +42,9 @@ public class AddReminderActivity extends AppCompatActivity {
     // Se declara el DAO para poder hablar con la base de datos de recordatorios
     private ReminderDao reminderDao;
 
-    // ========= INICIO DE LA MODIFICACIÓN =========
     // Se definen claves únicas para SharedPreferences, para no confundirlas con otras
     public static final String PREFS_NAME = "AppPrefs";
     public static final String KEY_FIRST_RUN_ADD_REMINDER = "isFirstRunAddReminder";
-    //========= FIN DE LA MODIFICACIÓN =========
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +70,8 @@ public class AddReminderActivity extends AppCompatActivity {
         setupTimePicker();
         setupSaveButton();
 
-        // ========= INICIO DE LA MODIFICACIÓN =========
         // Se llama a la función que comprueba si es la primera vez que se abre esta pantalla
         checkFirstRun();
-        // ========= FIN DE LA MODIFICACIÓN =========
 
         // Se pone a escuchar el switch de notificaciones por si el usuario lo activa o desactiva
         binding.NotificationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -87,7 +83,6 @@ public class AddReminderActivity extends AppCompatActivity {
         });
     }
 
-    // ========= INICIO DE LA MODIFICACIÓN =========
     // NUEVO MÉTODO: Comprueba si es la primera vez que se ejecuta esta Activity
     private void checkFirstRun() {
         // Se obtiene el archivo de preferencias de nuestra app
@@ -109,7 +104,6 @@ public class AddReminderActivity extends AppCompatActivity {
         // Si no es la primera vez que se entra, no se hace nada. El TextView permanecerá
         // con la visibilidad "gone" que se definió en el archivo XML.
     }
-    // ========= FIN DE LA MODIFICACIÓN =========
 
     // Se prepara el sistema para recibir una respuesta cuando se piden permisos
     private void setupPermissionLauncher() {
@@ -210,6 +204,13 @@ public class AddReminderActivity extends AppCompatActivity {
         binding.ButtonSave.setOnClickListener(v -> {
             // Se obtiene el texto del título y se le quitan los espacios de los lados
             String title = binding.ActNameEdit.getText().toString().trim();
+
+            // ========= INICIO DE LA CORRECCIÓN =========
+            // Se obtiene el texto de la descripción usando un ID que SÍ exista en tu XML.
+            // He supuesto que se llama 'descripcionEdit'. Si es otro, cámbialo aquí.
+            String description = binding.ActNoteEdit.getText().toString().trim();
+            // ========= FIN DE LA CORRECCIÓN =========
+
             // Se revisa si el switch de notificaciones está activado
             boolean useNotification = binding.NotificationSwitch.isChecked();
 
@@ -236,6 +237,8 @@ public class AddReminderActivity extends AppCompatActivity {
             Reminder newReminder = new Reminder();
             newReminder.titulo = title;
             newReminder.timestamp = triggerTime;
+            // Se añade la descripción al objeto
+            newReminder.descripcion = description;
 
             // Se manda a la base de datos a que guarde el nuevo recordatorio en un hilo aparte para no trabar la app
             AppDatabase.databaseWriteExecutor.execute(() -> {

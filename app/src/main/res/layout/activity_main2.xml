@@ -13,46 +13,55 @@
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_color"
-        android:backgroundTint="@color/background_color">
+        android:background="?attr/android:windowBackground">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/primary_color"
+            android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:theme="@style/ToolbarTheme" />
+            app:theme="@style/ToolbarTheme">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_app_name"
+                android:textColor="?attr/colorOnPrimary"
+                android:fontFamily="@font/biz_udpmincho"
+                android:textSize="20sp"
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/calendar_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:cardBackgroundColor="@android:color/white"
+            app:cardBackgroundColor="?attr/colorContainer"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar2">
 
-            <!--
-                SOLUCIÓN: Se han eliminado todos los atributos 'app:mcv_...'
-                para dejar el estilo por defecto de la librería, que es limpio
-                y similar al de Google. Esto elimina los errores de compilación.
-            -->
+            <!-- ======================= INICIO DE LA CORRECCIÓN ======================= -->
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:mcv_selectionColor="?attr/colorSecondary"
+                app:mcv_dateTextAppearance="@style/CalendarDateText"
+                app:mcv_headerTextAppearance="@style/CalendarHeaderText"
+                app:mcv_weekDayTextAppearance="@style/CustomWeekDayText"/>
+            <!-- ======================== FIN DE LA CORRECCIÓN ========================= -->
 
         </androidx.cardview.widget.CardView>
-
-        <!-- Aquí puedes añadir más vistas, como una lista de eventos del día -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -61,7 +70,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="?attr/android:windowBackground"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu" />
+        app:menu="@menu/nav_menu"
+        app:itemIconTint="@color/text_color"
+        app:itemTextColor="@color/text_color"
+        app:itemBackground="@drawable/nav_item_background" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

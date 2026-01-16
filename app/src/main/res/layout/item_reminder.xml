@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewReminder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
@@ -10,13 +10,13 @@
     app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headitemokey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_color"
-        android:backgroundTint="@color/primary_color"
         android:padding="16dp">
 
-        <!-- ID Correcto: textViewReminderTitle -->
+        <!-- Título del Recordatorio -->
         <TextView
             android:id="@+id/textViewReminderTitle"
             android:layout_width="0dp"
@@ -33,24 +33,40 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Título del Recordatorio" />
 
-        <!-- ID Correcto: textViewReminderDateTime -->
+        <!-- Fecha y Hora del Recordatorio -->
         <TextView
             android:id="@+id/textViewReminderDateTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
             android:ellipsize="end"
+            android:fontFamily="@font/biz_udpmincho"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
             android:textColor="@color/text_on_dark_hint"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewReminderTitle"
             tools:text="Fecha y Hora del Recordatorio" />
 
-        <!-- ID Correcto: buttonDelete -->
+        <!-- NUEVO: TextView para la Descripción -->
+        <TextView
+            android:id="@+id/textViewReminderDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="@color/text_on_dark_primary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewReminderDateTime"
+            tools:text="Semen"
+            tools:visibility="visible" />
+
+        <!-- Botón para eliminar -->
         <ImageButton
             android:id="@+id/buttonDelete"
             android:layout_width="48dp"
@@ -61,7 +77,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="?android:attr/textColorSecondary" />
+            app:tint="@color/text_on_dark_hint" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

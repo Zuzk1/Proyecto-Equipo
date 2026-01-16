@@ -56,24 +56,27 @@
 
     <!-- Estilos para el Calendario -->
     <style name="CalendarDateText" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColor">@color/special_text_day_calerndar</item>
+        <item name="android:textFontWeight">250</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="CalendarHeaderText" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textFontWeight">700</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="CustomWeekDayText" parent="TextAppearance.AppCompat.Caption">
-        <item name="android:textColor">@color/text_color</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textFontWeight">650</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <!-- ESTILO AÑADIDO PARA EVITAR EL ERROR EN LA TOOLBAR -->
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColorPrimary">@color/white</item>
+    <!-- ======================= INICIO DE LA CORRECCIÓN ======================= -->
+    <!-- Este estilo ahora solo es para los iconos (menú hamburguesa) -->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColorSecondary">@color/white</item>
     </style>
-
 </resources>
